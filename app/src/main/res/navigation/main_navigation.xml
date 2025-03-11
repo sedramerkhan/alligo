@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_product_details" />
     <fragment
         android:id="@+id/main_container_fragment"
-        android:name="com.example.e_commercenativexml.presentation.ui.MainContainerFragment"
+        android:name="com.example.e_commercenativexml.presentation.MainContainerFragment"
         android:label="MainContainerFragment"
         tools:layout="@layout/fragment_main_container">
         <action

@@ -1,16 +1,18 @@
-package com.example.e_commercenativexml.presentation
+package com.example.e_commercenativexml.presentation.setting
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.e_commercenativexml.databinding.FragmentProductDetailsBinding
+
+import com.example.e_commercenativexml.databinding.FragmentSettingBinding
 
 
-class ProductDetailsFragment : Fragment() {
+class SettingFragment : Fragment() {
 
-    private var _binding: FragmentProductDetailsBinding? = null
+    private var _binding: FragmentSettingBinding? = null
+
 
     private val binding get() = _binding!!
 
@@ -18,7 +20,7 @@ class ProductDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -30,4 +32,3 @@ class ProductDetailsFragment : Fragment() {
         _binding = null
     }
 }
-
