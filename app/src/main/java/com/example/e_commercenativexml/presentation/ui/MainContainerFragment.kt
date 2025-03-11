@@ -26,6 +26,7 @@ class MainContainerFragment : Fragment() {
     // Declare a binding variable
     private var _binding: FragmentMainContainerBinding? = null
     private val binding get() = _binding!!
+    private lateinit var navController: NavController
 
 
     override fun onCreateView(
@@ -40,22 +41,21 @@ class MainContainerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        replaceFragment(HomeFragment())
+        // Set up the NavController with the main navigation graph
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment?
+        // Check if the navHostFragment is null, if so, log an error
+        if (navHostFragment != null) {
+            navController = navHostFragment.navController
 
-        binding.navView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.navigation_home -> replaceFragment(HomeFragment())
-                R.id.navigation_dashboard -> replaceFragment(NotificationsFragment())
-                R.id.navigation_notifications -> replaceFragment(DashboardFragment())
-            }
-            true
+            // Set up BottomNavigationView to work with the NavController
+            binding.navView.setupWithNavController(navController)
+        } else {
+            // Handle the case where the NavHostFragment is not found
+            Log.e("MainContainerFragment", "NavHostFragment not found!")
         }
     }
 
-    private fun replaceFragment(fragment: Fragment){
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.frameLayout, fragment)?.commit()
-    }
+
 
 
     override fun onDestroyView() {

@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.e_commercenativexml.R
 import com.example.e_commercenativexml.databinding.FragmentHomeBinding
+import com.example.e_commercenativexml.presentation.ui.MainContainerFragmentDirections
 
 class HomeFragment : Fragment() {
 
@@ -36,7 +38,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.buttonHome.setOnClickListener {
-            findNavController().navigate(R.id.action_mainContainerFragment_to_productDetailsFragment)
+           val  navController = requireActivity().findNavController(R.id.main_activity_container)
+
+            // This will navigate to the ProductDetailsFragment in the other graph (mobile_navigation)
+            val action = MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment()
+            navController.navigate(action)
         }
         return root
     }

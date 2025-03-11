@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.homeToolbar)
 //        supportActionBar?.setDisplayShowTitleEnabled(false)
 
 

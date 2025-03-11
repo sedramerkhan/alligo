@@ -5,25 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/main_container_fragment">
 
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.e_commercenativexml.presentation.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.e_commercenativexml.presentation.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.e_commercenativexml.presentation.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.e_commercenativexml.presentation.ProductDetailsFragment"
