@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.buttonHome.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
+            findNavController().navigate(R.id.action_mainContainerFragment_to_productDetailsFragment)
         }
         return root
     }

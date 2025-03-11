@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/main_container_fragment">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.e_commercenativexml.presentation.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_navigation_home_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment" />
+
     </fragment>
 
     <fragment
@@ -31,4 +29,13 @@
         android:name="com.example.e_commercenativexml.presentation.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/main_container_fragment"
+        android:name="com.example.e_commercenativexml.presentation.ui.MainContainerFragment"
+        android:label="MainContainerFragment"
+        tools:layout="@layout/fragment_main_container">
+        <action
+            android:id="@+id/action_mainContainerFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
 </navigation>
