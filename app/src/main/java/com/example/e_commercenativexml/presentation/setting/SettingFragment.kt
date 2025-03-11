@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.e_commercenativexml.databinding.FragmentSettingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null

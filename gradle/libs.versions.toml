@@ -21,6 +21,7 @@ ksp = "1.9.0-1.0.13"
 retrofit = "2.9.0"
 
 lottie= "6.6.3"
+playServicesAnalyticsImpl = "18.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 
 lottie= { module = "com.airbnb.android:lottie", version.ref = "lottie"}
+play-services-analytics-impl = { group = "com.google.android.gms", name = "play-services-analytics-impl", version.ref = "playServicesAnalyticsImpl" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

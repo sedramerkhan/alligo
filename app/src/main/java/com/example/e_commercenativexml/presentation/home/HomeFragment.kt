@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.example.e_commercenativexml.R
+import com.example.e_commercenativexml.data.utils.NetworkResult
 import com.example.e_commercenativexml.databinding.FragmentHomeBinding
 import com.example.e_commercenativexml.presentation.MainContainerFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -20,26 +25,44 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.productsState.collect { state ->
+                when (state) {
+                    is NetworkResult.Loading -> {
+
+                        binding.textHome.text = "Loading"
+                    }
+
+                    is NetworkResult.Success -> {
+                        binding.textHome.text = state.data.products.size.toString()
+
+                    }
+
+                    is NetworkResult.Failure -> {
+                        binding.textHome.text = state.message
+
+                    }
+                }
+            }
         }
 
         binding.buttonHome.setOnClickListener {
-           val  navController = requireActivity().findNavController(R.id.main_activity_container)
+            val navController = requireActivity().findNavController(R.id.main_activity_container)
 
-            val action = MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment()
+            val action =
+                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment()
             navController.navigate(action)
         }
         return root
