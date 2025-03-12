@@ -1,17 +1,26 @@
 package com.example.e_commercenativexml.presentation.home.components
 
+import android.content.Context
+import android.graphics.Typeface
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Visibility
 import com.example.e_commercenativexml.R
 import com.example.e_commercenativexml.databinding.ProductItemBinding
 import com.example.e_commercenativexml.model.product.Product
 import com.example.e_commercenativexml.model.product.Products
 import com.example.e_commercenativexml.presentation.utils.ImageService
+import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
 
 
 class GridAdapter() :
@@ -33,7 +42,7 @@ class GridAdapter() :
     fun bindData(items: List<Product>) {
         data.clear()
         data.addAll(items)
-        Log.i("products","$items")
+        Log.i("products", items.joinToString("\n") { it.toString() })
         notifyDataSetChanged()
     }
 
@@ -42,13 +51,65 @@ class GridAdapter() :
         notifyItemRangeChanged(data.size - items.size, items.size)
     }
 
-    inner class GridViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class GridViewHolder(private val binding: ProductItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Product) {
 
-            binding.productItemText.text = item.title
-            ImageService.setImage(binding.productItemImage,binding.productItemImageShimmer,item.thumbnail)
+            //Title
+            binding.productItemText.text =
+                item.brand?.let { styledTitle(binding.root.context,item.title, it) } ?: item.title
 
+            //Image
+            ImageService.setImage(
+                binding.productItemImage,
+                binding.productItemImageShimmer,
+                item.thumbnail
+            )
+
+            //Price
+            binding.productItemPrice.text = item.price.formatPrice()
+
+            //Discount
+            if (item.discountPercentage > 0) {
+                binding.productItemDiscountCard.visibility = View.VISIBLE
+                binding.productItemDiscountText.text =
+                    "${String.format("%.2f", item.discountPercentage)}%"
+            } else {
+                binding.productItemDiscountCard.visibility = View.VISIBLE
+            }
+
+
+            //Rating
+            if (item.rating > 0) {
+                binding.productItemRatingCard.visibility = View.VISIBLE
+                binding.productItemRatingText.text = item.rating.toString()
+            } else {
+                binding.productItemRatingCard.visibility = View.VISIBLE
+            }
         }
 
+    }
+
+
+    fun styledTitle(context: Context, titleText:String,brandText: String): SpannableString{
+
+        val fullText = "$brandText, $titleText"
+
+// Create SpannableString to style text
+        val spannableString = SpannableString(fullText)
+
+// Style the brand part
+        val brandSpan = ForegroundColorSpan(ContextCompat.getColor(context, R.color.colorPrimary))
+        spannableString.setSpan(brandSpan, 0, brandText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val brandStyle = StyleSpan(R.style.TextSubtitle2)
+        spannableString.setSpan(brandStyle, 0, brandText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+// Style the title part
+        val titleSpan = ForegroundColorSpan(ContextCompat.getColor(context, R.color.onBackground))
+        spannableString.setSpan(titleSpan, brandText.length + 1, fullText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val titleStyle = StyleSpan(R.style.TextBody2)
+        spannableString.setSpan(titleStyle, brandText.length + 1, fullText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+     return  spannableString
     }
 }

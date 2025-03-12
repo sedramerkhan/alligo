@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
+    <color name="white">#FFFFFF</color>
+    <color name="black">#C1C1C1</color>
 
     <color name="colorPrimary">#BB86FC</color>
     <color name="colorPrimaryVariant">#3700B3</color>
@@ -21,5 +21,8 @@
     <color name="onError">#000000</color>
 
     <color name="shimmer">#D3D3D3</color>
+    <color name="discount_card">#FF3B30</color>
+
+    <color name="rating_card_background">#66000000</color>
 
 </resources>
