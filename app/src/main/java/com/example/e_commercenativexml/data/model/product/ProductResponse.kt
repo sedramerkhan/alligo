@@ -4,29 +4,29 @@ import com.example.e_commercenativexml.model.product.Product
 
 
 data class ProductResponse(
+    val id: Int,
+    val title: String,
+    val discountPercentage: Double,
     val availabilityStatus: String,
     val brand: String?,
     val category: String,
     val description: String,
-    val dimensions: DimensionsResponse,  // Change this to DimensionsResponse
-    val discountPercentage: Double,
-    val id: Int,
-    val images: List<String>,
-    val meta: MetaResponse,  // Change this to MetaResponse
     val minimumOrderQuantity: Int,
     val price: Double,
     val rating: Double,
     val returnPolicy: String,
-    val reviews: List<ReviewResponse>,  // Change this to ReviewResponse
     val shippingInformation: String,
     val sku: String,
     val stock: Int,
-    val tags: List<String>,
-    val thumbnail: String,
-    val title: String,
     val warrantyInformation: String,
-    val weight: Int
-)
+    val weight: Int,
+    val tags: List<String>,
+    val dimensions: DimensionsResponse,
+    val thumbnail: String,
+    val images: List<String>,
+    val meta: MetaResponse,
+    val reviews: List<ReviewResponse>,
+    )
 
 val ProductResponse.asDomainModel: Product
     get() = Product(

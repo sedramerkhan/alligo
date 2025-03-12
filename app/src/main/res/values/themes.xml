@@ -92,17 +92,31 @@
         <item name="android:textFontWeight">600</item>
     </style>
 
-    <!-- Body1 -->
-    <style name="TextBody1">
+    <!-- Body Large -->
+    <style name="TextBodyLargeRegular">
         <item name="android:fontFamily">@font/ibm</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
-    <!-- Body2 -->
-    <style name="TextBody2">
+    <!-- Body Medium -->
+    <style name="TextBodyMediumRegular">
         <item name="android:fontFamily">@font/ibm</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- Body Small -->
+    <style name="TextBodySmallRegular">
+        <item name="android:fontFamily">@font/ibm</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- Body XSmall -->
+    <style name="TextBodyXSmallRegular">
+        <item name="android:fontFamily">@font/ibm</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
@@ -114,19 +128,6 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
-    <!-- Caption -->
-    <style name="TextCaption">
-        <item name="android:fontFamily">@font/ibm</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-
-    <!-- Overline -->
-    <style name="TextOverline">
-        <item name="android:fontFamily">@font/ibm</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">normal</item>
-    </style>
 
 
 </resources>

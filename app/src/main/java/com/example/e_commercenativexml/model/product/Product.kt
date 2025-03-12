@@ -1,27 +1,46 @@
 package com.example.e_commercenativexml.model.product
 
+import com.example.e_commercenativexml.model.CartItem
+
 
 data class Product(
+    val id: Int,
+    val title: String,
+    val discountPercentage: Double,
     val availabilityStatus: String,
     val brand: String?,
     val category: String,
     val description: String,
-    val dimensions: Dimensions,
-    val discountPercentage: Double,
-    val id: Int,
-    val images: List<String>,
-    val meta: Meta,
     val minimumOrderQuantity: Int,
     val price: Double,
     val rating: Double,
     val returnPolicy: String,
-    val reviews: List<Review>,
     val shippingInformation: String,
     val sku: String,
     val stock: Int,
-    val tags: List<String>,
-    val thumbnail: String,
-    val title: String,
     val warrantyInformation: String,
-    val weight: Int
+    val weight: Int,
+    val tags: List<String>,
+    val dimensions: Dimensions,
+    val thumbnail: String,
+    val images: List<String>,
+    val meta: Meta,
+    val reviews: List<Review>,
 )
+
+fun Product.toCartItem(quantity: Int): CartItem {
+    return CartItem(
+        id = this.id.toLong(),
+        title = this.title,
+        discountPercentage = this.discountPercentage,
+        availabilityStatus = this.availabilityStatus,
+        brand = this.brand,
+        category = this.category,
+        description = this.description,
+        minimumOrderQuantity = this.minimumOrderQuantity,
+        price = this.price,
+        rating = this.rating,
+        thumbnail = this.thumbnail,
+        quantity=quantity
+    )
+}

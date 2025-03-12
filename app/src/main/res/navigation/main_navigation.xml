@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.e_commercenativexml.presentation.ProductDetailsFragment"
+        android:name="com.example.e_commercenativexml.presentation.productDetails.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" />
     <fragment

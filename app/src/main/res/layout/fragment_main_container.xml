@@ -36,12 +36,34 @@
             android:gravity="center_vertical"
             app:cardCornerRadius="24dp">
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:contentDescription="cart"
-                android:src="@drawable/ic_shopping_cart" />
+                android:layout_marginVertical="8dp">
+
+                <!--  Icon -->
+                <ImageView
+                    android:id="@+id/main_container_cart_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:contentDescription="cart"
+                    android:src="@drawable/ic_cart" />
+
+
+                <!--    Quantity    -->
+                <TextView
+                    android:id="@+id/main_container_cart_quantity"
+                    style="@style/TextBodyXSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/cart_quantity_background"
+                    android:paddingHorizontal="3dp"
+                    android:text="4" />
+            </FrameLayout>
+
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 

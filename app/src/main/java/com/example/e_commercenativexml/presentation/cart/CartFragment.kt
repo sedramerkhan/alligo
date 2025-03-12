@@ -1,16 +1,19 @@
-package com.example.e_commercenativexml.presentation
+package com.example.e_commercenativexml.presentation.cart
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.e_commercenativexml.databinding.FragmentProductDetailsBinding
+import androidx.fragment.app.activityViewModels
+import com.example.e_commercenativexml.databinding.FragmentCartBinding
 
+class CartFragment : Fragment() {
 
-class ProductDetailsFragment : Fragment() {
+    private val viewModel: CartViewModel by activityViewModels()
 
-    private var _binding: FragmentProductDetailsBinding? = null
+    private var _binding: FragmentCartBinding? = null
+
 
     private val binding get() = _binding!!
 
@@ -18,7 +21,7 @@ class ProductDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -29,5 +32,5 @@ class ProductDetailsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
 
+}

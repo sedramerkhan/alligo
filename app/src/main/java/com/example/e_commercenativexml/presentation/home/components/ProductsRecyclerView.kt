@@ -18,7 +18,9 @@ import com.example.e_commercenativexml.presentation.utils.ImageService
 import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
 
 
-class GridAdapter() :
+class GridAdapter(
+   private val onAddToCartClicked: (Product)-> Unit
+) :
     RecyclerView.Adapter<GridAdapter.GridViewHolder>() {
 
     private val data = mutableListOf<Product>()
@@ -52,7 +54,7 @@ class GridAdapter() :
 
             //Title
             binding.productItemText.text =
-                item.brand?.let { styledTitle(binding.root.context,item.title, it) } ?: item.title
+                item.brand?.let { styledTitle(binding.root.context, item.title, it) } ?: item.title
 
             //Image
             ImageService.setImage(
@@ -86,30 +88,44 @@ class GridAdapter() :
             binding.root.setOnClickListener {
 
             }
+
+            binding.productItemAddToCart.setOnClickListener {
+                onAddToCartClicked(item)
+            }
         }
 
     }
 
 
-    fun styledTitle(context: Context, titleText:String,brandText: String): SpannableString{
+    fun styledTitle(context: Context, titleText: String, brandText: String): SpannableString {
 
         val fullText = "$brandText, $titleText"
 
-// Create SpannableString to style text
+        // Create SpannableString to style text
         val spannableString = SpannableString(fullText)
 
-// Style the brand part
+        // Style the brand part
         val brandSpan = ForegroundColorSpan(ContextCompat.getColor(context, R.color.colorPrimary))
         spannableString.setSpan(brandSpan, 0, brandText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         val brandStyle = StyleSpan(R.style.TextSubtitle2)
         spannableString.setSpan(brandStyle, 0, brandText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-// Style the title part
+        // Style the title part
         val titleSpan = ForegroundColorSpan(ContextCompat.getColor(context, R.color.onBackground))
-        spannableString.setSpan(titleSpan, brandText.length + 1, fullText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val titleStyle = StyleSpan(R.style.TextBody2)
-        spannableString.setSpan(titleStyle, brandText.length + 1, fullText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            titleSpan,
+            brandText.length + 1,
+            fullText.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        val titleStyle = StyleSpan(R.style.TextBodyMediumRegular)
+        spannableString.setSpan(
+            titleStyle,
+            brandText.length + 1,
+            fullText.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
-     return  spannableString
+        return spannableString
     }
 }

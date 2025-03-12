@@ -8,8 +8,8 @@
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="8dp"
     android:layout_weight="1"
-    app:cardBackgroundColor="@color/backgroundColor"
     android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/backgroundColor"
     app:cardCornerRadius="8dp"
     app:cardElevation="1dp">
 
@@ -56,14 +56,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="8dp"
-            app:cardBackgroundColor="@color/discountCard"
+            app:cardBackgroundColor="@color/red"
             app:cardCornerRadius="24dp"
             app:layout_constraintStart_toStartOf="@id/product_item_image_card"
             app:layout_constraintTop_toTopOf="@id/product_item_image_card">
 
             <TextView
                 android:id="@+id/product_item_discount_text"
-                style="@style/TextOverline"
+                style="@style/TextBodySmallRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
@@ -80,32 +80,30 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="@color/ratingCardBackground"
             app:cardCornerRadius="24dp"
             app:cardElevation="1dp"
-            app:cardBackgroundColor="@color/ratingCardBackground"
             app:layout_constraintBottom_toBottomOf="@id/product_item_image_card"
             app:layout_constraintStart_toStartOf="@id/product_item_image_card">
 
             <TextView
                 android:id="@+id/product_item_rating_text"
-                style="@style/TextOverline"
+                style="@style/TextBodySmallRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="2dp"
                 android:drawableStart="@drawable/ic_star"
                 android:drawablePadding="4dp"
-                android:text="3.5"
-                />
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="3.5" />
 
         </androidx.cardview.widget.CardView>
-
 
 
         <!-- Title -->
         <TextView
             android:id="@+id/product_item_text"
-            style="@style/TextBody2"
+            style="@style/TextBodyMediumRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -121,12 +119,34 @@
             style="@style/TextSubtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:text="3400"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_item_text"
             app:layout_constraintVertical_bias="1" />
+
+        <!--   add to cart  -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/product_item_add_to_cart"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:elevation="2dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            app:cardCornerRadius="24dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:contentDescription="cart"
+                android:src="@drawable/ic_shopping_cart" />
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

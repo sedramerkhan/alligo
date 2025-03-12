@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercenativexml.data.utils.NetworkResult
 import com.example.e_commercenativexml.databinding.FragmentHomeBinding
 import com.example.e_commercenativexml.model.product.Product
+import com.example.e_commercenativexml.presentation.cart.CartViewModel
 import com.example.e_commercenativexml.presentation.home.components.GridAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -20,13 +22,14 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private val viewModel: HomeViewModel by viewModels()
+    private val cartViewModel: CartViewModel by activityViewModels()
+
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private val homeViewModel: HomeViewModel by viewModels()
 
     private lateinit var adapter: GridAdapter
 
@@ -44,7 +47,7 @@ class HomeFragment : Fragment() {
         binding.homeRefresher.setOnRefreshListener {
             // Make sure you call swipeContainer.setRefreshing(false)
             // once the network request has completed successfully.
-            homeViewModel.refresh()
+            viewModel.refresh()
         }
         //  binding.buttonHome.setOnClickListener {
 //            val navController = requireActivity().findNavController(R.id.main_activity_container)
@@ -59,7 +62,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.productsState.collect { state ->
+            viewModel.productsState.collect { state ->
                 when (state) {
                     is NetworkResult.Loading -> {
 
@@ -86,7 +89,10 @@ class HomeFragment : Fragment() {
         val recyclerView: RecyclerView = binding.homeProductsGrid
         recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 items per row
 
-        adapter = GridAdapter()
+        adapter = GridAdapter { product ->
+
+            cartViewModel.addToCart(product, 2)
+        }
         recyclerView.adapter = adapter
 
         ///Control calling next page
@@ -101,10 +107,11 @@ class HomeFragment : Fragment() {
                     val firstVisibleItemPosition =
                         (this as GridLayoutManager).findFirstVisibleItemPosition()
 
-                    homeViewModel.productListScrollPosition = firstVisibleItemPosition +1 //index start from 0
+                    viewModel.productListScrollPosition =
+                        firstVisibleItemPosition + 1 //index start from 0
                     // If the last item is visible, load more
                     if (visibleItemCount + firstVisibleItemPosition >= totalItemCount) {
-                        homeViewModel.nextPage()
+                        viewModel.nextPage()
                     }
                 }
 
@@ -114,8 +121,8 @@ class HomeFragment : Fragment() {
 
     private fun setData(data: List<Product>) {
 
-        binding.homeRefresher.isRefreshing=false
-        if (homeViewModel.page == 1)
+        binding.homeRefresher.isRefreshing = false
+        if (viewModel.page == 1)
             adapter.bindData(data)
         else
             adapter.addData(data)
