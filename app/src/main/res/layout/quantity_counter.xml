@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Decrease Button -->
+    <ImageButton
+        android:id="@+id/counter_btn_decrease"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/cart_counter_background"
+        android:src="@drawable/ic_minus"
+        android:contentDescription="decrease quantity"
+        android:scaleType="centerInside"
+        app:tint="@color/white" />
+
+    <!-- Quantity Text -->
+    <TextView
+        android:id="@+id/counter_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minWidth="40dp"
+        android:text="1"
+        style="@style/TextSubtitle1"
+        android:layout_marginHorizontal="8dp"/>
+
+    <!-- Increase Button -->
+    <ImageButton
+        android:id="@+id/counter_btn_increase"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/cart_counter_background"
+        android:src="@drawable/ic_add"
+        android:contentDescription="increase quantity"
+        android:scaleType="centerInside"
+        app:tint="@color/white" />
+</LinearLayout>

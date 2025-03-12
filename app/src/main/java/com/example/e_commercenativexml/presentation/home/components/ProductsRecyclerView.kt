@@ -58,8 +58,8 @@ class GridAdapter(
 
             //Image
             ImageService.setImage(
-                binding.productItemImage,
-                binding.productItemImageShimmer,
+                binding.productItemImage.image,
+                binding.productItemImage.imageShimmer,
                 item.thumbnail
             )
 

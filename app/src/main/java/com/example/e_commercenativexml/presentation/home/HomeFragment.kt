@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercenativexml.data.utils.NetworkResult
 import com.example.e_commercenativexml.databinding.FragmentHomeBinding
 import com.example.e_commercenativexml.model.product.Product
+import com.example.e_commercenativexml.presentation.AddToCartViewModel
 import com.example.e_commercenativexml.presentation.cart.CartViewModel
+import com.example.e_commercenativexml.presentation.home.components.AddToCartDialog
 import com.example.e_commercenativexml.presentation.home.components.GridAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,6 +26,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
     private val cartViewModel: CartViewModel by activityViewModels()
+    private val addToCartViewModel: AddToCartViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -91,7 +94,13 @@ class HomeFragment : Fragment() {
 
         adapter = GridAdapter { product ->
 
-            cartViewModel.addToCart(product, 2)
+
+
+            val chatPopUp = AddToCartDialog(
+
+                product,
+            )
+            chatPopUp.showNow(childFragmentManager, "AddToCartDialog")
         }
         recyclerView.adapter = adapter
 

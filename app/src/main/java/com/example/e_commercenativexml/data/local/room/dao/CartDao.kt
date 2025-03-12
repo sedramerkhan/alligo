@@ -16,7 +16,7 @@ interface CartDao {
     fun getAll(): Flow<List<CartItem>>
 
     @Query("SELECT * FROM CartItem WHERE id LIKE :id")
-    fun getItem(id: Long): Flow<CartItem>
+    fun getItem(id: Long): Flow<CartItem?>
 
 
     @Upsert

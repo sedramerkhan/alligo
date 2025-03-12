@@ -31,20 +31,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/product_item_image_shimmer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF"
 
-                app:shimmer_auto_start="true"
-                app:shimmer_duration="1000" />
-
-            <ImageView
-                android:id="@+id/product_item_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Item Image" />
+          <include
+              android:id="@+id/product_item_image"
+              layout="@layout/custom_image_view"/>
 
         </com.google.android.material.card.MaterialCardView>
 

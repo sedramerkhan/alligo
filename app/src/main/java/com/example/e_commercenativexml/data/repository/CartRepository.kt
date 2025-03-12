@@ -10,7 +10,7 @@ class CartRepository(
 
     fun getAllItems(): Flow<List<CartItem>> = cartDao.getAll()
 
-    fun getItemById(id: Long): Flow<CartItem> = cartDao.getItem(id)
+    fun getItemById(id: Long): Flow<CartItem?> = cartDao.getItem(id)
 
     suspend fun insertItem(item: CartItem): Long {
         return cartDao.insert(item)

@@ -42,14 +42,5 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    var counter = 1
-    fun addToCart(product: Product, quantity: Int) {
-
-        viewModelScope.launch {
-            val item = product.toCartItem(counter++)
-            cartRepository.insertItem(item)
-
-        }
-    }
 
 }

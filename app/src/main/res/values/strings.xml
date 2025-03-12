@@ -2,6 +2,7 @@
     <string name="app_name">E-commerce Native XML</string>
     <string name="title_home">Home</string>
     <string name="title_setting">Setting</string>
+    <string name="add_to_cart">Add To Cart</string>
 
 
 </resources>
