@@ -12,9 +12,27 @@
         <item name="colorError">@color/errorColor</item>
         <item name="colorOnError">@color/onError</item>
 
+
+        <item name="colorSurface">@color/surfaceColor</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/backgroundColor</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor" >@color/backgroundColor</item>
+        <item name="android:windowLightStatusBar" >false</item>
+
+        <!-- Navigation bar color. -->
+        <item name="android:navigationBarColor">@color/surfaceColor</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <item name="android:textColor">@color/onBackground</item>
+
+        <item name="android:fitsSystemWindows">true</item>
+
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <item name="android:fontFamily">@font/ibm_medium</item>
+
+
 
     </style>
 

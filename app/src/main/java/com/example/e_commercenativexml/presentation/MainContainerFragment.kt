@@ -33,7 +33,7 @@ class MainContainerFragment : Fragment() {
 
       setBottomNavbar()
 
-        binding.mainContainerCartItem.setOnClickListener {
+        binding.mainContainerCart.setOnClickListener {
             Log.i("Hi","gffgf")
         }
     }

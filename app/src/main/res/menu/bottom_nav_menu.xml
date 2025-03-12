@@ -4,12 +4,12 @@
     <!-- note:  ids should be like in the nav graph-->
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_home"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_setting_black_24dp"
+        android:icon="@drawable/ic_setting"
         android:title="@string/title_setting" />
 
 </menu>

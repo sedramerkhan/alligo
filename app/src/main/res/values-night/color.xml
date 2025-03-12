@@ -3,26 +3,27 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#C1C1C1</color>
 
-    <color name="colorPrimary">#BB86FC</color>
-    <color name="colorPrimaryVariant">#3700B3</color>
-    <color name="colorOnPrimary">#000000</color>
+    <color name="colorPrimary">#0092E6</color>
+    <color name="colorPrimaryVariant">#00A0E6</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
 
-    <color name="colorSecondary">#03DAC6</color>
-    <color name="colorSecondaryVariant">#018786</color>
+    <color name="colorSecondary">#FF9800</color>
+    <color name="colorSecondaryVariant">#FFB347</color>
     <color name="colorOnSecondary">#000000</color>
 
-    <color name="backgroundColor">#000000</color>
-    <color name="onBackground">#FFFFFF</color>
 
-    <color name="surfaceColor">#121212</color>
-    <color name="onSurface">#FFFFFF</color>
+    <color name="backgroundColor">#1A282F</color>
+    <color name="onBackground">#E0E0E0</color>
+
+    <color name="surfaceColor">#233542</color>
+    <color name="onSurface">#F5F5F5</color>
 
     <color name="errorColor">#CF6679</color>
     <color name="onError">#000000</color>
 
     <color name="shimmer">#D3D3D3</color>
-    <color name="discount_card">#FF3B30</color>
+    <color name="discountCard">#FF3B30</color>
 
-    <color name="rating_card_background">#66000000</color>
+    <color name="ratingCardBackground">#B31A282F</color>
 
 </resources>
