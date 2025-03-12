@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.e_commercenativexml.R
 import com.example.e_commercenativexml.data.utils.NetworkResult
 import com.example.e_commercenativexml.databinding.FragmentHomeBinding
-import com.example.e_commercenativexml.presentation.MainContainerFragmentDirections
+import com.example.e_commercenativexml.model.product.Product
 import com.example.e_commercenativexml.presentation.home.components.GridAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,45 +28,25 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private lateinit var adapter: GridAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.productsState.collect { state ->
-                when (state) {
-                    is NetworkResult.Loading -> {
+        gridInitializer()
 
-                      //  binding.textHome.text = "Loading"
-                    }
-
-                    is NetworkResult.Success -> {
-
-                        val recyclerView: RecyclerView = binding.homeProductsGrid
-                        recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 items per row
-
-                        val adapter = GridAdapter()
-                        recyclerView.adapter = adapter
-
-                        adapter.bindData(state.data.products)
-                    }
-
-                    is NetworkResult.Failure -> {
-                     //   binding.textHome.text = state.message
-
-                    }
-                }
-            }
+        binding.homeRefresher.setOnRefreshListener {
+            // Make sure you call swipeContainer.setRefreshing(false)
+            // once the network request has completed successfully.
+            homeViewModel.refresh()
         }
-
-
-      //  binding.buttonHome.setOnClickListener {
+        //  binding.buttonHome.setOnClickListener {
 //            val navController = requireActivity().findNavController(R.id.main_activity_container)
 //
 //            val action =
@@ -78,10 +56,73 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun getData(): List<String> {
-        // Replace this with your data source
-        return List(20) { "Item $it" }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.productsState.collect { state ->
+                when (state) {
+                    is NetworkResult.Loading -> {
+
+                        //  binding.textHome.text = "Loading"
+                    }
+
+                    is NetworkResult.Success -> {
+                        setData(state.data.products)
+
+                    }
+
+                    is NetworkResult.Failure -> {
+                        //   binding.textHome.text = state.message
+
+                    }
+                }
+            }
+        }
+
     }
+
+
+    private fun gridInitializer() {
+        val recyclerView: RecyclerView = binding.homeProductsGrid
+        recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 items per row
+
+        adapter = GridAdapter()
+        recyclerView.adapter = adapter
+
+        ///Control calling next page
+        binding.homeProductsGrid.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                recyclerView.layoutManager?.apply {
+                    // Check if we've scrolled to the last item
+                    val totalItemCount = itemCount
+                    val visibleItemCount = childCount
+                    val firstVisibleItemPosition =
+                        (this as GridLayoutManager).findFirstVisibleItemPosition()
+
+                    homeViewModel.productListScrollPosition = firstVisibleItemPosition +1 //index start from 0
+                    // If the last item is visible, load more
+                    if (visibleItemCount + firstVisibleItemPosition >= totalItemCount) {
+                        homeViewModel.nextPage()
+                    }
+                }
+
+            }
+        })
+    }
+
+    private fun setData(data: List<Product>) {
+
+        binding.homeRefresher.isRefreshing=false
+        if (homeViewModel.page == 1)
+            adapter.bindData(data)
+        else
+            adapter.addData(data)
+
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

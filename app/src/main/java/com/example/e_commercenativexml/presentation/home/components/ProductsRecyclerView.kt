@@ -1,7 +1,6 @@
 package com.example.e_commercenativexml.presentation.home.components
 
 import android.content.Context
-import android.graphics.Typeface
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -10,15 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Visibility
 import com.example.e_commercenativexml.R
 import com.example.e_commercenativexml.databinding.ProductItemBinding
 import com.example.e_commercenativexml.model.product.Product
-import com.example.e_commercenativexml.model.product.Products
 import com.example.e_commercenativexml.presentation.utils.ImageService
 import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
 
@@ -85,6 +80,11 @@ class GridAdapter() :
                 binding.productItemRatingText.text = item.rating.toString()
             } else {
                 binding.productItemRatingCard.visibility = View.VISIBLE
+            }
+
+
+            binding.root.setOnClickListener {
+
             }
         }
 

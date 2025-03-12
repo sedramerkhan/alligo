@@ -96,6 +96,7 @@ dependencies {
     //Coil
     implementation(libs.coil)
     implementation(libs.shimmer)
+    implementation(libs.swiperefreshlayout)
 
 
 

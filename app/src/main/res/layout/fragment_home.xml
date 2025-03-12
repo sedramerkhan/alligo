@@ -5,12 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/home_refresher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_products_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         android:orientation="vertical" />
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

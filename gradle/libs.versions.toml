@@ -25,6 +25,7 @@ playServicesAnalyticsImpl = "18.2.0"
 
 coil="2.7.0"
 shimmer="0.5.0"
+swiperefresh="1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,6 +57,7 @@ play-services-analytics-impl = { group = "com.google.android.gms", name = "play-
 
 coil = {module = "io.coil-kt:coil" ,version.ref="coil" }
 shimmer = {module = "com.facebook.shimmer:shimmer" ,version.ref="shimmer" }
+swiperefreshlayout = {module = "androidx.swiperefreshlayout:swiperefreshlayout" ,version.ref="swiperefresh" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,7 +1,7 @@
 package com.example.e_commercenativexml.presentation.home
 
 
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commercenativexml.data.repository.ProductRepository
@@ -26,11 +26,13 @@ constructor(
         getProducts(1)
     }
 
-    //  var query by mutableStateOf("")
-    private var page: Int = 1
-    private var tvShowListScrollPosition = 0
-    var listStateTo0 = MutableLiveData(false)
 
+    var searchQuery = ""
+    var isSearchEnabled = false
+
+    var page: Int = 1
+
+    var productListScrollPosition = 0
 
     private val _productsState =
         MutableStateFlow<NetworkResult<out Products>>(NetworkResult.Loading)
@@ -46,13 +48,14 @@ constructor(
                     if (it is NetworkResult.Success) {
                         products.clear()
                         products.addAll(it.data.products)
+
                     }
                 }
         }
     }
 
 
-//    private suspend fun newSearch() {
+    //     suspend fun newSearch() {
 //        cleanData()
 //        val results: MutableList<TvShow> = mutableListOf()
 //        for (p in 1..page) {
@@ -71,42 +74,65 @@ constructor(
 //        }
 //    }
 //
-//    private suspend fun nextPage() {
-//        if(tvShowsResponse is NetworkResult.Loading)
-//            return
-//        if ((tvShowListScrollPosition + 1) >= (page * PAGE_SIZE)) {
-//            incrementPage()
-//            Log.d(TAG, "nextPage: triggered: $page")
-//            if (page > 1) {
-//                when(searchDone) {
-//                    false -> {
-//                        repo.getPopular(page = page).collect {
-//                            tvShowsResponse = it
-//                            if (it is NetworkResult.Success) {
-//                                tvShows.addAll(it.data)
-//                            }
-//                        }
-//                    }
-//                    else -> {
-//                        repo.search(page = page, query = query).collect {
-//                            tvShowsResponse = it
-//                            if (it is NetworkResult.Success) {
-//                                tvShows.addAll(it.data)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+    fun nextPage() = viewModelScope.launch {
+        Log.i("products","next page is called $productListScrollPosition")
+
+        if (productsState.value is NetworkResult.Loading)
+            return@launch
+        //Divide by 2 because items are in grid
+        if ((productListScrollPosition +1) >= (page * productRepository.limit)/2) {
+            page++
+            Log.i("products","next page called")
+
+            when (isSearchEnabled) {
+                false -> {
+                    productRepository.getProducts(page = page).collect {
+                        addData(it)
+                    }
+                }
+
+                else -> {
+                    productRepository.searchProducts(page = page, query = searchQuery).collect {
+                        addData(it)
+                    }
+                }
+            }
+
+        }
+    }
 
 
-//    private fun incrementPage() {
-//        setPage(page + 1)
-//    }
+    fun refresh() = viewModelScope.launch {
+        Log.i("products","refresh is called")
 
-    fun onChangeTvShowScrollPosition(position: Int) {
-        setListScrollPosition(position = position)
+        page=1
+        if (productsState.value is NetworkResult.Loading)
+            return@launch
+
+            when (isSearchEnabled) {
+                false -> {
+                    productRepository.getProducts(page = page).collect {
+                        addData(it)
+                    }
+                }
+
+                else -> {
+                    productRepository.searchProducts(page = page, query = searchQuery).collect {
+                        addData(it)
+                    }
+                }
+            }
+
+
+    }
+
+
+    private fun addData(result: NetworkResult<out Products>) {
+        _productsState.value = result
+        if (result is NetworkResult.Success) {
+            products.clear()
+            products.addAll(result.data.products)
+        }
     }
 
     /**
@@ -121,8 +147,6 @@ constructor(
 //        setQuery(query)
 //    }
 
-    private fun setListScrollPosition(position: Int) {
-        tvShowListScrollPosition = position
-    }
+
 
 }
