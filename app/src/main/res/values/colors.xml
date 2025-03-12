@@ -18,4 +18,9 @@
 
     <color name="errorColor">#B00020</color>
     <color name="onError">#FFFFFF</color>
+
+
+    <color name="shimmer">#D3D3D3</color>
+
+
 </resources>

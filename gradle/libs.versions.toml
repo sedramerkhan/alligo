@@ -23,6 +23,9 @@ retrofit = "2.9.0"
 lottie= "6.6.3"
 playServicesAnalyticsImpl = "18.2.0"
 
+coil="2.7.0"
+shimmer="0.5.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -50,6 +53,9 @@ retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref 
 
 lottie= { module = "com.airbnb.android:lottie", version.ref = "lottie"}
 play-services-analytics-impl = { group = "com.google.android.gms", name = "play-services-analytics-impl", version.ref = "playServicesAnalyticsImpl" }
+
+coil = {module = "io.coil-kt:coil" ,version.ref="coil" }
+shimmer = {module = "com.facebook.shimmer:shimmer" ,version.ref="shimmer" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

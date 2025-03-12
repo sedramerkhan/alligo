@@ -93,5 +93,11 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Coil
+    implementation(libs.coil)
+    implementation(libs.shimmer)
+
+
+
 
 }

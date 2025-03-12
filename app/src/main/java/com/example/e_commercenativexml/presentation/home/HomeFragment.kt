@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercenativexml.R
 import com.example.e_commercenativexml.data.utils.NetworkResult
 import com.example.e_commercenativexml.databinding.FragmentHomeBinding
 import com.example.e_commercenativexml.presentation.MainContainerFragmentDirections
+import com.example.e_commercenativexml.presentation.home.components.GridAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,32 +45,43 @@ class HomeFragment : Fragment() {
                 when (state) {
                     is NetworkResult.Loading -> {
 
-                        binding.textHome.text = "Loading"
+                      //  binding.textHome.text = "Loading"
                     }
 
                     is NetworkResult.Success -> {
-                        binding.textHome.text = state.data.products.size.toString()
 
+                        val recyclerView: RecyclerView = binding.homeProductsGrid
+                        recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 items per row
+
+                        val adapter = GridAdapter()
+                        recyclerView.adapter = adapter
+
+                        adapter.bindData(state.data.products)
                     }
 
                     is NetworkResult.Failure -> {
-                        binding.textHome.text = state.message
+                     //   binding.textHome.text = state.message
 
                     }
                 }
             }
         }
 
-        binding.buttonHome.setOnClickListener {
-            val navController = requireActivity().findNavController(R.id.main_activity_container)
 
-            val action =
-                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment()
-            navController.navigate(action)
-        }
+      //  binding.buttonHome.setOnClickListener {
+//            val navController = requireActivity().findNavController(R.id.main_activity_container)
+//
+//            val action =
+//                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment()
+//            navController.navigate(action)
+//        }
         return root
     }
 
+    private fun getData(): List<String> {
+        // Replace this with your data source
+        return List(20) { "Item $it" }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
