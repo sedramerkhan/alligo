@@ -56,7 +56,7 @@ class CartAdapter(
         fun bind(index: Int,item: CartItem) {
             binding.cartItemTitle.text = item.title
 
-            binding.cartItemPrice.text = item.price.formatPrice()
+            binding.cartItemPrice.text = (item.price - item.price * item.discountPercentage/100).formatPrice()
 
             binding.cartItemOldPrice.text = item.price.formatPrice()
             binding.cartItemOldPrice.paintFlags =

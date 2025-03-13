@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commercenativexml.data.repository.CartRepository
 import com.example.e_commercenativexml.model.CartItem
-import com.example.e_commercenativexml.model.product.Product
-import com.example.e_commercenativexml.model.product.toCartItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -43,7 +41,7 @@ class CartViewModel @Inject constructor(
     }
 
 
-     fun increaseQuantity(index: Int) {
+    fun increaseItemQuantity(index: Int) {
         viewModelScope.launch {
             _cartItemsState.value[index].let {
                 cartRepository.insertItem(it.copy(quantity = it.quantity + 1))
@@ -51,13 +49,20 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    fun decreaseQuantity(index: Int) {
+    fun decreaseItemQuantity(index: Int) {
         _cartItemsState.value[index].let {
             if (it.quantity > 1)
                 viewModelScope.launch {
                     cartRepository.insertItem(it.copy(quantity = it.quantity - 1))
                 }
         }
+    }
+
+    fun deleteItem(index: Int) {
+        viewModelScope.launch {
+            cartRepository.deleteItem(_cartItemsState.value[index].id)
+        }
+
     }
 
 }
