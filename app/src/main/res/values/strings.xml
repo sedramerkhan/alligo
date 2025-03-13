@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_setting">Setting</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="my_cart">My Cart</string>
 
 
 </resources>

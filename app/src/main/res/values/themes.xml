@@ -39,7 +39,7 @@
     <!-- H1 -->
     <style name="TextH1">
         <item name="android:fontFamily">@font/ibm</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textFontWeight">600</item>
     </style>
 
@@ -71,26 +71,36 @@
         <item name="android:textFontWeight">600</item>
     </style>
 
-    <!-- H6 -->
-    <style name="TextH6">
+
+    <!-- Body Large Semi bold -->
+    <style name="TextBodyLargeSemiBold">
+        <item name="android:fontFamily">@font/ibm</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textFontWeight">600</item>
+    </style>
+
+    <!-- Body Medium Semi Bold -->
+    <style name="TextBodyMediumSemiBold">
         <item name="android:fontFamily">@font/ibm</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textFontWeight">600</item>
     </style>
 
-    <!-- Subtitle1 -->
-    <style name="TextSubtitle1">
+    <!-- Body Large Medium -->
+    <style name="TextBodyLargeMedium">
         <item name="android:fontFamily">@font/ibm</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textFontWeight">600</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textFontWeight">500</item>
     </style>
 
-    <!-- Subtitle2 -->
-    <style name="TextSubtitle2">
+    <!-- Body Medium Medium -->
+    <style name="TextBodyMediumMedium">
         <item name="android:fontFamily">@font/ibm</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textFontWeight">600</item>
+        <item name="android:textFontWeight">500</item>
     </style>
+
+
 
     <!-- Body Large -->
     <style name="TextBodyLargeRegular">
@@ -121,11 +131,13 @@
     </style>
 
     <!-- Button -->
-    <style name="TextButton">
+    <style name="FilledButton">
         <item name="android:fontFamily">@font/ibm</item>
-        <item name="android:textSize">17sp</item>
-        <item name="android:textFontWeight">500</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight">600</item>
         <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/filled_button_background</item>
     </style>
 
 

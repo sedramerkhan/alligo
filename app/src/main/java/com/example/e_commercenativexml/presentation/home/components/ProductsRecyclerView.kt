@@ -107,7 +107,7 @@ class GridAdapter(
         // Style the brand part
         val brandSpan = ForegroundColorSpan(ContextCompat.getColor(context, R.color.colorPrimary))
         spannableString.setSpan(brandSpan, 0, brandText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val brandStyle = StyleSpan(R.style.TextSubtitle2)
+        val brandStyle = StyleSpan(R.style.TextBodyMediumSemiBold)
         spannableString.setSpan(brandStyle, 0, brandText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         // Style the title part
