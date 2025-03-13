@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.cart.CartFragment">
 
+    <!--  Appbar  -->
     <LinearLayout
         android:id="@+id/cart_appbar"
         android:layout_width="match_parent"
@@ -29,10 +30,10 @@
 
     <TextView
         android:id="@+id/cart_empty"
+        style="@style/TextH4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your cart is Empty"
-        style="@style/TextH4"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

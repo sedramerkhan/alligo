@@ -41,6 +41,7 @@ class MainContainerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setBottomNavbar()
+        navbarListener()
 
         binding.mainContainerCart.setOnClickListener {
             val navController = requireActivity().findNavController(R.id.main_activity_container)
@@ -54,6 +55,22 @@ class MainContainerFragment : Fragment() {
 
     }
 
+    // Observe navigation changes and update title
+    private fun navbarListener() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.mainContainerTitle.text = getString(
+                when (destination.id) {
+                    R.id.navigation_home -> {
+                        R.string.title_home
+                    }
+
+                    else -> {
+                        R.string.title_setting
+                    }
+                }
+            )
+        }
+    }
 
     private fun setBottomNavbar() {
         // Set up the NavController with the bottom nav navigation graph

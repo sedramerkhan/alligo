@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.e_commercenativexml.databinding.FragmentSettingBinding
+import com.example.e_commercenativexml.presentation.BaseApplication
+import com.example.e_commercenativexml.presentation.utils.ThemeService
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +25,16 @@ class SettingFragment : Fragment() {
     ): View {
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
+        //Control Theme
+        binding.themeSwitch.apply {
+            isChecked = BaseApplication.isDarkMode
+            setOnCheckedChangeListener { _, isChecked ->
+                BaseApplication.isDarkMode = isChecked
+                ThemeService.applyDarkMode(isChecked)
+            }
+        }
 
         return root
 
