@@ -94,14 +94,10 @@ class HomeFragment : Fragment() {
 
         adapter = GridAdapter { product ->
 
-
-
-            val chatPopUp = AddToCartDialog(
-
-                product,
-            )
-            chatPopUp.showNow(childFragmentManager, "AddToCartDialog")
+            val addToCartDialog = AddToCartDialog(product,)
+            addToCartDialog.showNow(childFragmentManager, "AddToCartDialog")
         }
+
         recyclerView.adapter = adapter
 
         ///Control calling next page

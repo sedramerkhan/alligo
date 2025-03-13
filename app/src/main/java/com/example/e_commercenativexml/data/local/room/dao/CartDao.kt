@@ -1,8 +1,6 @@
 package com.example.e_commercenativexml.data.local.room.dao
 
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
@@ -27,4 +25,7 @@ interface CartDao {
 
     @Query("DELETE FROM CartItem WHERE id LIKE :id")
     suspend fun delete(id: Long)
+
+    @Query("DELETE FROM CartItem")
+    suspend fun deleteAll()
 }

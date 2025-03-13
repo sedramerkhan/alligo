@@ -19,4 +19,8 @@ class CartRepository(
     suspend fun deleteItem(id: Long) {
         cartDao.delete(id)
     }
+
+    suspend fun deleteAll() {
+        cartDao.deleteAll()
+    }
 }

@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commercenativexml.databinding.FragmentCartBinding
 import com.example.e_commercenativexml.model.CartItem
+import com.example.e_commercenativexml.presentation.addToCart.AddToCartDialog
 import com.example.e_commercenativexml.presentation.cart.components.CartAdapter
+import com.example.e_commercenativexml.presentation.cart.components.CheckoutSuccessDialog
 import com.example.e_commercenativexml.presentation.cart.components.SwipeHandler
 import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
 import kotlinx.coroutines.launch
@@ -34,6 +36,15 @@ class CartFragment : Fragment() {
         val root: View = binding.root
 
         recyclerViewInitializer()
+
+
+        binding.cartCheckoutBtn.setOnClickListener {
+            val checkoutSuccessDialog = CheckoutSuccessDialog{
+                viewModel.deleteAll()
+            }
+            checkoutSuccessDialog.showNow(childFragmentManager, "AddToCartDialog")
+        }
+
         return root
 
     }
@@ -51,16 +62,21 @@ class CartFragment : Fragment() {
 
 
     private fun setData(items: List<CartItem>) {
-        cartAdapter.bindData(items)
+        if(items.isNotEmpty()) {
+            cartAdapter.bindData(items)
 
-        val originalPrice = viewModel.originalPrice
-        binding.cartOriginalPriceValue.text = originalPrice.formatPrice()
+            val originalPrice = viewModel.originalPrice
+            binding.cartOriginalPriceValue.text = originalPrice.formatPrice()
 
 
-        val discount = viewModel.discount
-        binding.cartDiscountValue.text = discount.formatPrice()
+            val discount = viewModel.discount
+            binding.cartDiscountValue.text = discount.formatPrice()
 
-        binding.cartTotalValue.text = (originalPrice - discount).formatPrice()
+            binding.cartTotalValue.text = (originalPrice - discount).formatPrice()
+        }else{
+            binding.cartBottomSheet.visibility=View.GONE
+            binding.cartEmpty.visibility=View.VISIBLE
+        }
     }
 
     private fun recyclerViewInitializer() {

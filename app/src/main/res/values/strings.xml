@@ -4,6 +4,9 @@
     <string name="title_setting">Setting</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="my_cart">My Cart</string>
+    <string name="original_price">Original Price</string>
+    <string name="discount_amount">Discount Amount</string>
+    <string name="total">Total</string>
 
 
 </resources>

@@ -140,6 +140,16 @@
         <item name="android:background">@drawable/filled_button_background</item>
     </style>
 
+    <style name="FilledButtonSmall">
+        <item name="android:fontFamily">@font/ibm</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:background">@drawable/filled_button_background</item>
+    </style>
+
 
 
 </resources>

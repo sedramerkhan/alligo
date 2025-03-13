@@ -72,7 +72,12 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             cartRepository.deleteItem(_cartItemsState.value[index].id)
         }
+    }
 
+    fun deleteAll() {
+        viewModelScope.launch {
+            cartRepository.deleteAll()
+        }
     }
 
 }
