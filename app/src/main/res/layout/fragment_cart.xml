@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/my_cart" />
+            android:text="@string/title_my_cart" />
 
     </LinearLayout>
 
@@ -33,7 +33,7 @@
         style="@style/TextH4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your cart is Empty"
+        android:text="@string/your_cart_is_empty"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

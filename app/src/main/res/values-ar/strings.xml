@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E-commerce Native XML</string>
+    <string name="title_home">الرئيسية</string>
+    <string name="title_setting">الإعدادات</string>
+    <string name="add_to_cart">أضف إلى السلة</string>
+    <string name="title_my_cart">سلتي</string>
+    <string name="original_price">السعر الأصلي</string>
+    <string name="discount_amount">قيمة الخصم</string>
+    <string name="total">الإجمالي</string>
+    <string name="language">اللغة</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="your_cart_is_empty">سلتك فارغة</string>
+    <string name="checkout_success">تم تقديم طلبك بنجاح</string>
+    <string name="dark_mode">الوضع الليلي</string>
+
+</resources>

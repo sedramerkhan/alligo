@@ -3,10 +3,16 @@
     <string name="title_home">Home</string>
     <string name="title_setting">Setting</string>
     <string name="add_to_cart">Add To Cart</string>
-    <string name="my_cart">My Cart</string>
+    <string name="title_my_cart">My Cart</string>
     <string name="original_price">Original Price</string>
     <string name="discount_amount">Discount Amount</string>
     <string name="total">Total</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="your_cart_is_empty">Your cart is Empty</string>
+    <string name="checkout_success">Your order has been placed successfully</string>
+    <string name="dark_mode">Dark Mode</string>
 
 
 </resources>
