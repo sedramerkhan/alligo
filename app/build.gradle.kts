@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.e_commercenativexml"
+    namespace = "com.alligo"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.e_commercenativexml"
+        applicationId = "com.alligo"
         minSdk = 28
         targetSdk = 35
         versionCode = 1

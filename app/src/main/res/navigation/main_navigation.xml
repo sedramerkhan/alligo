@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.e_commercenativexml.presentation.productDetails.ProductDetailsFragment"
+        android:name="com.alligo.presentation.productDetails.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" />
     <fragment
         android:id="@+id/main_container_fragment"
-        android:name="com.example.e_commercenativexml.presentation.MainContainerFragment"
+        android:name="com.alligo.presentation.MainContainerFragment"
         android:label="MainContainerFragment"
         tools:layout="@layout/fragment_main_container">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.e_commercenativexml.presentation.cart.CartFragment"
+        android:name="com.alligo.presentation.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 </navigation>
