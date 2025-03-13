@@ -24,7 +24,7 @@ class BaseApplication : Application() {
         AppSettingManager.applyTheme(isDarkMode)
 
 
-        isDarkMode = appPreferences.locale == "ar"
+        isArabic = appPreferences.locale == "ar"
 
         Log.i("Setting", "Locale ${appPreferences.locale} theme ${appPreferences.theme}")
 

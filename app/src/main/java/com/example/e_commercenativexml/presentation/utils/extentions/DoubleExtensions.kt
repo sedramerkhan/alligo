@@ -5,6 +5,11 @@ import java.text.DecimalFormatSymbols
 import java.util.Locale
 
 fun Double.formatPrice(): String {
-    val formatter = DecimalFormat("#,###,###", DecimalFormatSymbols(Locale.US))
+    val formatter = DecimalFormat("#,###,###.##", DecimalFormatSymbols(Locale.US))
     return "${formatter.format(this)} $"
+}
+
+fun Number.formatToEnglish(): String {
+    val formatter = DecimalFormat("#,###.##", DecimalFormatSymbols(Locale.US))
+    return formatter.format(this)
 }

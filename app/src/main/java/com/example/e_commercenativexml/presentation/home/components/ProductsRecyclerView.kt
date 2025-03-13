@@ -16,10 +16,11 @@ import com.example.e_commercenativexml.databinding.ItemProductBinding
 import com.example.e_commercenativexml.model.product.Product
 import com.example.e_commercenativexml.presentation.utils.ImageService
 import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
+import com.example.e_commercenativexml.presentation.utils.extentions.formatToEnglish
 
 
 class GridAdapter(
-   private val onAddToCartClicked: (Product)-> Unit
+    private val onAddToCartClicked: (Product) -> Unit
 ) :
     RecyclerView.Adapter<GridAdapter.GridViewHolder>() {
 
@@ -70,7 +71,7 @@ class GridAdapter(
             if (item.discountPercentage > 0) {
                 binding.productItemDiscountCard.visibility = View.VISIBLE
                 binding.productItemDiscountText.text =
-                    "${String.format("%.2f", item.discountPercentage)}%"
+                    "${item.discountPercentage.formatToEnglish()}%"
             } else {
                 binding.productItemDiscountCard.visibility = View.VISIBLE
             }
@@ -79,7 +80,7 @@ class GridAdapter(
             //Rating
             if (item.rating > 0) {
                 binding.productItemRatingCard.visibility = View.VISIBLE
-                binding.productItemRatingText.text = item.rating.toString()
+                binding.productItemRatingText.text = item.rating.formatToEnglish()
             } else {
                 binding.productItemRatingCard.visibility = View.VISIBLE
             }

@@ -44,13 +44,18 @@ class SettingFragment : Fragment() {
             if (BaseApplication.isArabic) R.id.radio_arabic
             else R.id.radio_english
         )
-        // Set a listener for the RadioGroup to handle the selection
+
         binding.radioGroupLanguage.setOnCheckedChangeListener { _, checkedId ->
             val locale = if (checkedId == R.id.radio_english) "en"
             else "ar"
             BaseApplication.appPreferences.locale = locale
 
-            (context as? Activity)?.recreate()
+            activity?.recreate()
+        }
+
+        //Logout
+        binding.logout.setOnClickListener {
+
         }
         return root
 

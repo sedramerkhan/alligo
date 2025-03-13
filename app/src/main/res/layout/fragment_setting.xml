@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="24dp"
     tools:context=".presentation.cart.CartFragment">
 
     <!--    Theme -->
@@ -19,6 +21,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_theme" />
+
         <TextView
             style="@style/TextH4"
             android:layout_width="0dp"
@@ -31,52 +40,103 @@
             android:id="@+id/theme_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            />
+            android:checked="false" />
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/language_text"
-        android:layout_width="wrap_content"
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/language"
-        style="@style/TextH4"
-        app:layout_constraintTop_toBottomOf="@id/theme_switch_layout"
-        app:layout_constraintStart_toStartOf="parent"/>
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/theme_switch_layout">
 
-        <!-- Radio Group for Language Selection -->
-        <RadioGroup
-            android:id="@+id/radio_group_language"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_language" />
+
+        <TextView
+            style="@style/TextH4"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/language_text"
-            app:layout_constraintStart_toStartOf="parent">
+            android:text="@string/language" />
+    </LinearLayout>
+
+
+    <!-- Radio Group for Language Selection -->
+    <RadioGroup
+        android:id="@+id/radio_group_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/language_text">
 
         <!-- Radio Button for English -->
         <RadioButton
             android:id="@+id/radio_english"
+            style="@style/TextBodyLargeMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/english"
             android:checked="true"
-            style="@style/TextBodyLargeMedium"/>
+            android:paddingStart="16dp"
+            android:text="@string/english" />
 
         <!-- Radio Button for Arabic -->
         <RadioButton
             android:id="@+id/radio_arabic"
+            style="@style/TextBodyLargeMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/arabic"
-            style="@style/TextBodyLargeMedium"/>
-        </RadioGroup>
+            android:paddingStart="16dp"
+
+            android:text="@string/arabic" />
+    </RadioGroup>
 
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/grey200"
+        app:layout_constraintBottom_toTopOf="@id/logout" />
+
+    <LinearLayout
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_logout" />
+
+        <TextView
+            style="@style/TextH4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/logout" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_next" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

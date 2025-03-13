@@ -14,5 +14,8 @@
     <string name="your_cart_is_empty">سلتك فارغة</string>
     <string name="checkout_success">تم تقديم طلبك بنجاح</string>
     <string name="dark_mode">الوضع الليلي</string>
+    <string name="continue_shopping">أكمل التسوق</string>
+    <string name="checkout">ال1هاب إلى الدفع</string>
+    <string name="logout">تسجيل الخروج</string>
 
 </resources>
