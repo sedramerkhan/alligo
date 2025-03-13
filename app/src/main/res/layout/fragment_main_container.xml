@@ -61,6 +61,7 @@
                     android:layout_gravity="end"
                     android:background="@drawable/cart_quantity_background"
                     android:paddingHorizontal="3dp"
+                    android:textColor="@color/white"
                     android:text="4" />
             </FrameLayout>
 

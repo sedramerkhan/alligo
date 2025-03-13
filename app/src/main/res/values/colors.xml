@@ -18,7 +18,8 @@
     <color name="colorOnSecondary">#FFFFFF</color>
 
 
-    <color name="backgroundColor">#FFFFFF</color>
+    <!-- grey F2F2F2 blue  E7F5FF  -->
+    <color name="backgroundColor">#F2F2F2</color>
     <color name="onBackground">#1C1C1C</color>
 
     <color name="surfaceColor">#FCFCFCFC</color>
