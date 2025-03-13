@@ -41,6 +41,16 @@ class CartViewModel @Inject constructor(
     }
 
 
+    val originalPrice
+        get() = cartItemsState.value.fold(0.0) { acc, item ->
+            acc + item.price * item.quantity
+        }
+
+    val discount
+        get() = cartItemsState.value.fold(0.0) { acc, item ->
+            acc + (item.price * item.discountPercentage / 100) * item.quantity
+        }
+
     fun increaseItemQuantity(index: Int) {
         viewModelScope.launch {
             _cartItemsState.value[index].let {

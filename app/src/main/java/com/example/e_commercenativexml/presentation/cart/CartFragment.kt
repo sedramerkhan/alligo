@@ -10,8 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commercenativexml.databinding.FragmentCartBinding
+import com.example.e_commercenativexml.model.CartItem
 import com.example.e_commercenativexml.presentation.cart.components.CartAdapter
 import com.example.e_commercenativexml.presentation.cart.components.SwipeHandler
+import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
 import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
@@ -41,12 +43,25 @@ class CartFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.cartItemsState.collect { items ->
-                cartAdapter.bindData(items)
+                setData(items)
             }
         }
 
     }
 
+
+    private fun setData(items: List<CartItem>) {
+        cartAdapter.bindData(items)
+
+        val originalPrice = viewModel.originalPrice
+        binding.cartOriginalPriceValue.text = originalPrice.formatPrice()
+
+
+        val discount = viewModel.discount
+        binding.cartDiscountValue.text = discount.formatPrice()
+
+        binding.cartTotalValue.text = (originalPrice - discount).formatPrice()
+    }
 
     private fun recyclerViewInitializer() {
 
