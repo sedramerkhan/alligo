@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commercenativexml.R
-import com.example.e_commercenativexml.databinding.ProductItemBinding
+import com.example.e_commercenativexml.databinding.ItemProductBinding
 import com.example.e_commercenativexml.model.product.Product
 import com.example.e_commercenativexml.presentation.utils.ImageService
 import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
@@ -26,7 +26,7 @@ class GridAdapter(
     private val data = mutableListOf<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GridViewHolder {
-        val binding = ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GridViewHolder(binding)
     }
 
@@ -48,7 +48,7 @@ class GridAdapter(
         notifyItemRangeChanged(data.size - items.size, items.size)
     }
 
-    inner class GridViewHolder(private val binding: ProductItemBinding) :
+    inner class GridViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Product) {
 

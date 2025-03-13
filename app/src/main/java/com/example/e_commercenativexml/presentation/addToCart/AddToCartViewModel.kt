@@ -1,4 +1,4 @@
-package com.example.e_commercenativexml.presentation
+package com.example.e_commercenativexml.presentation.addToCart
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -17,22 +17,22 @@ class AddToCartViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private var _product: Product? =null
+    private var _product: Product? = null
 
     val itemQuantityState: MutableStateFlow<Int> = MutableStateFlow(1)
 
     init {
-        Log.i("product","init")
+        Log.i("product", "init")
 
     }
 
-    fun setProduct(product: Product){
-        this._product=product
+    fun setProduct(product: Product) {
+        this._product = product
         getCartItem()
     }
 
     fun getCartItem() {
-        Log.i("products","getCartItem")
+        Log.i("products", "getCartItem")
 
         viewModelScope.launch {
             cartRepository.getItemById(_product!!.id.toLong()).collect {
@@ -43,7 +43,7 @@ class AddToCartViewModel @Inject constructor(
 
     fun addToCart() {
         viewModelScope.launch {
-            Log.i("products","add")
+            Log.i("products", "add")
 
             val item = _product!!.toCartItem(itemQuantityState.value)
             cartRepository.insertItem(item)
@@ -51,14 +51,15 @@ class AddToCartViewModel @Inject constructor(
     }
 
     fun increaseQuantity() {
-        Log.i("products","increase")
+        Log.i("products", "increase")
 
         itemQuantityState.value++
     }
 
     fun decreaseQuantity() {
-        Log.i("products","decrease")
-        itemQuantityState.value--
+        Log.i("products", "decrease")
+        if (itemQuantityState.value > 1)
+            itemQuantityState.value--
     }
 
 

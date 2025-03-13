@@ -24,10 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:minWidth="40dp"
+        android:minWidth="30dp"
         android:text="1"
-        style="@style/TextBodyLargeSemiBold"
-        android:layout_marginHorizontal="8dp"/>
+        style="@style/TextBodyMediumSemiBold"
+        android:layout_marginHorizontal="4dp"/>
 
     <!-- Increase Button -->
     <ImageButton

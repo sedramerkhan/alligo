@@ -24,7 +24,7 @@
         <item name="android:navigationBarColor">@color/surfaceColor</item>
         <item name="android:windowLightNavigationBar">false</item>
 
-        <item name="android:textColor">@color/onBackground</item>
+        <item name="android:textColor">@color/textPrimary</item>
 
         <item name="android:fitsSystemWindows">true</item>
 

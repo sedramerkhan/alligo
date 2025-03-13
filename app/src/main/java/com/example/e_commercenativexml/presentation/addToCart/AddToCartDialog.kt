@@ -1,4 +1,4 @@
-package com.example.e_commercenativexml.presentation.home.components
+package com.example.e_commercenativexml.presentation.addToCart
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -12,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.e_commercenativexml.databinding.DialogAddToCartBinding
 import com.example.e_commercenativexml.model.product.Product
-import com.example.e_commercenativexml.presentation.AddToCartViewModel
 import com.example.e_commercenativexml.presentation.utils.ImageService
 import com.example.e_commercenativexml.presentation.utils.extentions.formatPrice
 import dagger.hilt.android.AndroidEntryPoint

@@ -9,7 +9,7 @@
 
     <color name="colorSecondary">#FF9800</color>
     <color name="colorSecondaryVariant">#FFB347</color>
-    <color name="colorOnSecondary">#000000</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
 
 
     <color name="backgroundColor">#1A282F</color>
@@ -20,6 +20,12 @@
 
     <color name="errorColor">#CF6679</color>
     <color name="onError">#000000</color>
+
+    <!--   Text Colors -->
+    <color name="textPrimary">#E0E0E0</color>
+    <color name="textPrimaryAlt">#BDBDBD</color>
+    <color name="textSecondary">#FFFFFF</color>
+
 
     <color name="shimmer">#D3D3D3</color>
     <color name="red">#FF3B30</color>

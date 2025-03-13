@@ -43,4 +43,21 @@ class CartViewModel @Inject constructor(
     }
 
 
+     fun increaseQuantity(index: Int) {
+        viewModelScope.launch {
+            _cartItemsState.value[index].let {
+                cartRepository.insertItem(it.copy(quantity = it.quantity + 1))
+            }
+        }
+    }
+
+    fun decreaseQuantity(index: Int) {
+        _cartItemsState.value[index].let {
+            if (it.quantity > 1)
+                viewModelScope.launch {
+                    cartRepository.insertItem(it.copy(quantity = it.quantity - 1))
+                }
+        }
+    }
+
 }

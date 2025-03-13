@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.e_commercenativexml.R
@@ -41,10 +42,14 @@ class MainContainerFragment : Fragment() {
 
         setBottomNavbar()
 
-
         binding.mainContainerCart.setOnClickListener {
-            Log.i("Hi", "gffgf")
+            val navController = requireActivity().findNavController(R.id.main_activity_container)
+
+            val action =
+                MainContainerFragmentDirections.actionMainContainerFragmentToCartFragment()
+            navController.navigate(action)
         }
+
         observeCartQuantity()
 
     }
