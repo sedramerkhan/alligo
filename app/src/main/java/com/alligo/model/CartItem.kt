@@ -15,6 +15,7 @@ data class CartItem(
     val category: String,
     val description: String,
     val minimumOrderQuantity: Int,
+    val stack: Int,
     val price: Double,
     val rating: Double,
     val thumbnail: String,

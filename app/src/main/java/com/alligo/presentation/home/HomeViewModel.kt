@@ -23,7 +23,7 @@ constructor(
 
     init {
 
-        getProducts(1)
+        getProducts()
     }
 
 
@@ -40,7 +40,7 @@ constructor(
 
     val products = mutableListOf<Product>()
 
-    fun getProducts(page: Int) {
+    fun getProducts() {
         viewModelScope.launch {
             productRepository.getProducts(page)
                 .collect {

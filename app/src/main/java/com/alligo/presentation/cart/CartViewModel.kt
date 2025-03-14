@@ -56,8 +56,10 @@ class CartViewModel @Inject constructor(
 
     fun increaseItemQuantity(index: Int) {
         viewModelScope.launch {
+
             _cartItemsState.value[index].let {
-                cartRepository.insertItem(it.copy(quantity = it.quantity + 1))
+                if (it.stack > it.quantity)
+                    cartRepository.insertItem(it.copy(quantity = it.quantity + 1))
             }
         }
     }
@@ -72,20 +74,20 @@ class CartViewModel @Inject constructor(
     }
 
     fun deleteItem(index: Int) {
-        recentlyDeletedItem =_cartItemsState.value[index]
+        recentlyDeletedItem = _cartItemsState.value[index]
         recentlyDeletedItemPosition = index
     }
 
-    fun confirmDeleteItem(){
+    fun confirmDeleteItem() {
         viewModelScope.launch {
             cartRepository.deleteItem(recentlyDeletedItem!!.id)
-           clearDeleteData()
+            clearDeleteData()
         }
     }
 
-    fun clearDeleteData(){
-        recentlyDeletedItem=null
-        recentlyDeletedItemPosition= null
+    fun clearDeleteData() {
+        recentlyDeletedItem = null
+        recentlyDeletedItemPosition = null
     }
 
     fun deleteAll() {

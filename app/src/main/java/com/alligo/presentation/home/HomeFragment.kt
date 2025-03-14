@@ -20,6 +20,7 @@ import com.alligo.presentation.addToCart.AddToCartViewModel
 import com.alligo.presentation.cart.CartViewModel
 import com.alligo.presentation.addToCart.AddToCartDialog
 import com.alligo.presentation.home.components.GridAdapter
+import com.alligo.presentation.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -56,6 +57,9 @@ class HomeFragment : Fragment() {
             viewModel.refresh()
         }
 
+        binding.homeError.errorViewRetry.setOnClickListener {
+            viewModel.getProducts()
+        }
         return root
     }
 
@@ -67,22 +71,41 @@ class HomeFragment : Fragment() {
 
                 when (state) {
                     is NetworkResult.Loading -> {
+                        binding.homeErrorView.visibility = View.GONE
 
-                        binding.homeProgress.visibility=View.VISIBLE
-                        binding.homeRefresher.visibility=View.GONE
+                        if (viewModel.products.isNotEmpty()) {
+                            binding.homeProgress.visibility = View.VISIBLE
+                            binding.homeRefresher.visibility = View.GONE
+                        }
                     }
 
                     is NetworkResult.Success -> {
-                        binding.homeProgress.visibility=View.GONE
-                        binding.homeRefresher.visibility=View.VISIBLE
+                        binding.homeProgress.visibility = View.GONE
+                        binding.homeRefresher.visibility = View.VISIBLE
+                        binding.homeErrorView.visibility = View.GONE
+
                         setData(state.data.products)
+
 
                     }
 
                     is NetworkResult.Failure -> {
-                        binding.homeProgress.visibility=View.GONE
+                        if (viewModel.products.isNotEmpty()) {
+                            binding.homeProgress.visibility = View.GONE
+                            binding.homeErrorView.visibility = View.VISIBLE
+
+                        } else {
+                            activity?.let {
+                                ToastUtils.show(
+                                    it,
+                                    getString(R.string.failed_to_get_data)
+                                )
+                            }
+                        }
+
                     }
-                    else->{}
+
+                    else -> {}
                 }
             }
         }
@@ -94,17 +117,19 @@ class HomeFragment : Fragment() {
         val recyclerView: RecyclerView = binding.homeProductsGrid
         recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 items per row
 
-        adapter = GridAdapter (onClicked = {
+        adapter = GridAdapter(onClicked = {
 
             val navController = requireActivity().findNavController(R.id.main_activity_container)
 
             val action =
-                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment(it.id)
+                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment(
+                    it.id
+                )
             navController.navigate(action)
 //
         }, onAddToCartClicked = { product ->
 
-            val addToCartDialog = AddToCartDialog(product,)
+            val addToCartDialog = AddToCartDialog(product)
             addToCartDialog.showNow(childFragmentManager, "AddToCartDialog")
         })
 

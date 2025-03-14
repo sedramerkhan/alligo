@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginHorizontal="30dp"
+   android:id="@+id/error_view_container">
+
+
+
+        <ImageView
+            android:id="@+id/error_view_retry"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_restart"
+            android:contentDescription=""
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/failed_to_get_data"
+            android:textAlignment="center"
+            android:layout_marginTop="16dp"
+            style="@style/TextBodyLargeSemiBold"
+            android:textColor="@color/textPrimary"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/check_your_connection_then_retry"
+            android:textAlignment="center"
+            style="@style/TextBodyLargeMedium"
+            android:textColor="@color/textPrimary"
+            />
+
+
+
+
+</LinearLayout>

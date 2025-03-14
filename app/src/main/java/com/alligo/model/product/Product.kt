@@ -41,6 +41,7 @@ fun Product.toCartItem(quantity: Int): CartItem {
         price = this.price,
         rating = this.rating,
         thumbnail = this.thumbnail,
-        quantity=quantity
+        quantity=quantity,
+        stack = stock
     )
 }

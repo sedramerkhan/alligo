@@ -52,8 +52,8 @@ class AddToCartViewModel @Inject constructor(
 
     fun increaseQuantity() {
         Log.i("products", "increase")
-
-        itemQuantityState.value++
+        if (_product!!.stock > itemQuantityState.value)
+            itemQuantityState.value++
     }
 
     fun decreaseQuantity() {

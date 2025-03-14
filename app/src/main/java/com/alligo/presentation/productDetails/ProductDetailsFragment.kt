@@ -44,6 +44,10 @@ class ProductDetailsFragment : Fragment() {
     ): View {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.productError.errorViewRetry.setOnClickListener {
+            viewModel.getProduct(id)
+        }
         return root
     }
 
@@ -54,19 +58,21 @@ class ProductDetailsFragment : Fragment() {
                 when (state) {
                     is NetworkResult.Loading -> {
 
-                     binding.productProgress.visibility=View.VISIBLE
-                     binding.productView.visibility=View.GONE
+                        binding.productProgress.visibility = View.VISIBLE
+                        binding.productView.visibility = View.GONE
+                        binding.productErrorView.visibility = View.GONE
                     }
 
                     is NetworkResult.Success -> {
-                        binding.productProgress.visibility=View.GONE
-                        binding.productView.visibility=View.VISIBLE
+                        binding.productProgress.visibility = View.GONE
+                        binding.productView.visibility = View.VISIBLE
 
                         setProductDetails(state.data)
                     }
 
                     is NetworkResult.Failure -> {
-                        binding.productProgress.visibility=View.GONE
+                        binding.productProgress.visibility = View.GONE
+                        binding.productErrorView.visibility = View.VISIBLE
 
                     }
 
@@ -88,13 +94,14 @@ class ProductDetailsFragment : Fragment() {
             )
 
             if (product.brand.isNullOrEmpty()) {
-                productBrande.visibility = View.GONE
+                productBrand.visibility = View.GONE
             } else {
-                productBrande.text = product.brand
+                productBrand.text = product.brand
             }
 
             productTitle.text = product.title
 
+            productCategory.text=product.category
 
             productPrice.text =
                 (product.price - product.price * product.discountPercentage / 100).formatPrice()
@@ -116,7 +123,7 @@ class ProductDetailsFragment : Fragment() {
 
             productItemRatingText.text = product.rating.formatToEnglish()
 
-            productStock.text = if (product.stock > 0) "In Stock" else "Out of Stock"
+            productStock.text =product.availabilityStatus
             productStock.setTextColor(
                 ContextCompat.getColor(
                     requireContext(),

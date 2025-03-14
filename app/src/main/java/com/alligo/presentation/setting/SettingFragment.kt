@@ -37,6 +37,11 @@ class SettingFragment : Fragment() {
                 BaseApplication.isDarkMode = isChecked
                 BaseApplication.appPreferences.theme = if (isChecked) "dark" else "light"
                 AppSettingManager.applyTheme(isChecked)
+
+                // Restart activity properly
+                val intent = Intent(context, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                context?.startActivity(intent)
             }
         }
 
