@@ -2,12 +2,14 @@ package com.alligo.presentation.login
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.alligo.databinding.FragmentLoginBinding
+import com.alligo.presentation.utils.KeyboardUtils
 import com.alligo.presentation.utils.extentions.isValidEmail
 import com.alligo.presentation.utils.extentions.isValidPassword
 
@@ -33,13 +35,20 @@ class LoginFragment : Fragment() {
                 signIn()
         }
 
+        binding.loginCard.setOnClickListener {
+            Log.i("hi","sdfsdfsdfsfsfsdfsdf")
+            this.activity?.let {  KeyboardUtils.hide(it) }
+
+            binding.loginCard.clearFocus()
+        }
+
          return root
 
     }
 
     private fun signIn() {
         val email = binding.longinEditTextEmail.text.toString().trim()
-        val password = binding.loginEditTextPasswordText.text.toString().trim()
+        val password = binding.loginEditTextPassword.text.toString().trim()
 
         // Validate inputs
         val emailError = email.isValidEmail()
@@ -70,13 +79,13 @@ class LoginFragment : Fragment() {
 
     private fun disableFields() {
         binding.longinEditTextEmail.isEnabled = false
-        binding.loginEditTextPasswordText.isEnabled = false
+        binding.loginEditTextPassword.isEnabled = false
         binding.loginBtn.isEnabled = false
     }
 
     private fun enableFields() {
         binding.longinEditTextEmail.isEnabled = true
-        binding.loginEditTextPasswordText.isEnabled = true
+        binding.loginEditTextPassword.isEnabled = true
         binding.loginBtn.isEnabled = true
     }
 

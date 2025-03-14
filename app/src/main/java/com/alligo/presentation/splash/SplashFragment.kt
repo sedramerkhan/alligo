@@ -36,7 +36,7 @@ class SplashFragment : Fragment() {
         Log.i("splash", token)
 
 
-        if (token.isEmpty()) {
+        if (token.isNotEmpty()) {
             findNavController().navigate(R.id.action_splashFragment_to_mainContainerFragment,
                 null,
                 navOptions {

@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.alligo.presentation.utils.AppSettingManager
+import com.alligo.presentation.utils.KeyboardUtils
 import java.util.Locale
 
 open class BaseActivity : AppCompatActivity() {
@@ -25,17 +26,9 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        hideSoftKeyboard(this)
+        KeyboardUtils.hide(this)
         return super.onTouchEvent(event)
     }
 
-    private fun hideSoftKeyboard(activity: Activity) {
-        val inputMethodManager =
-            activity.getSystemService(
-                Activity.INPUT_METHOD_SERVICE
-            ) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            activity.currentFocus?.windowToken, 0
-        )
-    }
+
 }

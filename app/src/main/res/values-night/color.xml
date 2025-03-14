@@ -33,6 +33,6 @@
     <color name="ratingCardBackground">#B31A282F</color>
 
     <color name="edit_text_background">#E7F5FE</color>
-    <color name="edit_text_text_color">#707070</color>
+    <color name="edit_text_content">#707070</color>
 
 </resources>
