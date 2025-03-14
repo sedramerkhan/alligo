@@ -14,6 +14,7 @@ import com.alligo.R
 import com.alligo.data.utils.NetworkResult
 import com.alligo.databinding.FragmentProductDetailsBinding
 import com.alligo.model.product.Product
+import com.alligo.presentation.addToCart.AddToCartDialog
 import com.alligo.presentation.utils.ImageService
 import com.alligo.presentation.utils.extentions.formatPrice
 import com.alligo.presentation.utils.extentions.formatToEnglish
@@ -48,6 +49,8 @@ class ProductDetailsFragment : Fragment() {
         binding.productError.errorViewRetry.setOnClickListener {
             viewModel.getProduct(id)
         }
+
+
         return root
     }
 
@@ -61,13 +64,20 @@ class ProductDetailsFragment : Fragment() {
                         binding.productProgress.visibility = View.VISIBLE
                         binding.productView.visibility = View.GONE
                         binding.productErrorView.visibility = View.GONE
+                        binding.productBottomSheet.visibility = View.GONE
                     }
 
                     is NetworkResult.Success -> {
                         binding.productProgress.visibility = View.GONE
                         binding.productView.visibility = View.VISIBLE
+                        binding.productBottomSheet.visibility = View.VISIBLE
 
                         setProductDetails(state.data)
+
+                        binding.productAddToCartBtn.setOnClickListener {
+                            val addToCartDialog = AddToCartDialog(state.data)
+                            addToCartDialog.showNow(childFragmentManager, "AddToCartDialog")
+                        }
                     }
 
                     is NetworkResult.Failure -> {

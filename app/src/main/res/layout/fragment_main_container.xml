@@ -31,10 +31,10 @@
             android:id="@+id/main_container_cart"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            app:cardElevation="2dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
-            app:cardCornerRadius="24dp">
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -52,17 +52,23 @@
                     android:src="@drawable/ic_cart" />
 
 
-                <!--    Quantity    -->
-                <TextView
-                    android:id="@+id/main_container_cart_quantity"
-                    style="@style/TextBodyXSmallRegular"
+                <FrameLayout
+                    android:id="@+id/main_container_cart_quantity_card"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:background="@drawable/cart_quantity_background"
-                    android:paddingHorizontal="3dp"
-                    android:textColor="@color/white"
-                    android:text="4" />
+                    android:background="@drawable/cart_quantity_background">
+                    <!--    Quantity    -->
+                    <TextView
+                        android:id="@+id/main_container_cart_quantity"
+                        style="@style/TextBodyXSmallRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="4"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
             </FrameLayout>
 
         </com.google.android.material.card.MaterialCardView>

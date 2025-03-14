@@ -85,11 +85,11 @@ class MainContainerFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             cartViewModel.cartsQuantityState.collect {
 
-                val cartQuantityView = binding.mainContainerCartQuantity
+                val cartQuantityView = binding.mainContainerCartQuantityCard
                 if (it > 0) {
                     //Update quantity
                     cartQuantityView.visibility = View.VISIBLE
-                    cartQuantityView.text = it.toString()
+                    binding.mainContainerCartQuantity.text = it.toString()
 
                     //Shake cart icon
                     shakeAnimation(binding.mainContainerCartIcon)

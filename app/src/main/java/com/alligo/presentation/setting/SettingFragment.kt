@@ -8,11 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.alligo.R
 
 import com.alligo.databinding.FragmentSettingBinding
 import com.alligo.presentation.BaseApplication
 import com.alligo.presentation.MainActivity
+import com.alligo.presentation.MainContainerFragmentDirections
 import com.alligo.presentation.utils.AppSettingManager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +53,7 @@ class SettingFragment : Fragment() {
 
         //Control Locale
         binding.radioGroupLanguage.check(
-            if (BaseApplication.appPreferences.locale=="ar") R.id.radio_arabic
+            if (BaseApplication.appPreferences.locale == "ar") R.id.radio_arabic
             else R.id.radio_english
         )
 
@@ -69,6 +73,21 @@ class SettingFragment : Fragment() {
 
         //Logout
         binding.logout.setOnClickListener {
+            //clear room
+            context?.deleteDatabase(
+                "Room"
+            )
+
+            BaseApplication.appPreferences.token = ""
+
+            val navController = requireActivity().findNavController(R.id.main_activity_container)
+
+            navController.navigate(R.id.action_mainContainerFragment_to_loginFragment,
+                null,
+                navOptions {
+                    popUpTo(R.id.mainContainerFragment) { inclusive = true }
+                })
+
 
         }
         return root
