@@ -28,6 +28,8 @@ shimmer="0.5.0"
 swiperefresh="1.1.0"
 
 coreSplashscreen = "1.0.1"
+legacySupportV4 = "1.0.0"
+fragmentKtx = "1.8.6"
 
 
 [libraries]
@@ -63,6 +65,8 @@ play-services-analytics-impl = { group = "com.google.android.gms", name = "play-
 coil = {module = "io.coil-kt:coil" ,version.ref="coil" }
 shimmer = {module = "com.facebook.shimmer:shimmer" ,version.ref="shimmer" }
 swiperefreshlayout = {module = "androidx.swiperefreshlayout:swiperefreshlayout" ,version.ref="swiperefresh" }
+androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

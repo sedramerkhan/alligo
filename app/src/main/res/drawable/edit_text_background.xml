@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- State when the EditText is focused -->
+    <item android:state_focused="true">
+        <shape>
+            <solid android:color="@color/edit_text_background" />
+            <stroke android:width="2dp" android:color="@color/colorPrimaryVariant"  /> <!-- Border when focused -->
+            <corners android:radius="12dp" />
+
+        </shape>
+    </item>
+
+    <!-- Default state when EditText is not focused -->
+    <item>
+        <shape>
+            <solid android:color="@color/edit_text_background" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+</selector>

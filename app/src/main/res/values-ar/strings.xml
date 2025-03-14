@@ -20,4 +20,12 @@
     <string name="item_is_deleted">تمّ حذف المنتج</string>
     <string name="undo">تراجع</string>
 
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="sign_up">التسجيل</string>
+    <string name="no_account">ليس لديك حساب؟</string>
+
+
 </resources>

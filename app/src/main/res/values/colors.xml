@@ -38,5 +38,10 @@
 
     <color name="ratingCardBackground">#B3FFFFFF</color>
 
+    <color name="edit_text_background">#F3F3F3</color>
+    <color name="edit_text_text_color">#707070</color>
+
+
+
 
 </resources>
