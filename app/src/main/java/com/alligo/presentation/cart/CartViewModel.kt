@@ -26,6 +26,9 @@ class CartViewModel @Inject constructor(
 
     val cartsQuantityState: MutableStateFlow<Int> = MutableStateFlow(0)
 
+    var recentlyDeletedItem: CartItem? = null
+    var recentlyDeletedItemPosition: Int? = null
+
 
     private fun getItems() {
         viewModelScope.launch {
@@ -69,9 +72,20 @@ class CartViewModel @Inject constructor(
     }
 
     fun deleteItem(index: Int) {
+        recentlyDeletedItem =_cartItemsState.value[index]
+        recentlyDeletedItemPosition = index
+    }
+
+    fun confirmDeleteItem(){
         viewModelScope.launch {
-            cartRepository.deleteItem(_cartItemsState.value[index].id)
+            cartRepository.deleteItem(recentlyDeletedItem!!.id)
+           clearDeleteData()
         }
+    }
+
+    fun clearDeleteData(){
+        recentlyDeletedItem=null
+        recentlyDeletedItemPosition= null
     }
 
     fun deleteAll() {

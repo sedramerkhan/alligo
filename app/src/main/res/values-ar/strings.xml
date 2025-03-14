@@ -15,7 +15,9 @@
     <string name="checkout_success">تم تقديم طلبك بنجاح</string>
     <string name="dark_mode">الوضع الليلي</string>
     <string name="continue_shopping">أكمل التسوق</string>
-    <string name="checkout">ال1هاب إلى الدفع</string>
+    <string name="checkout">الذهاب إلى الدفع</string>
     <string name="logout">تسجيل الخروج</string>
+    <string name="item_is_deleted">تمّ حذف المنتج</string>
+    <string name="undo">تراجع</string>
 
 </resources>

@@ -1,6 +1,8 @@
 package  com.alligo.presentation.cart
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +11,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alligo.R
 import com.alligo.databinding.FragmentCartBinding
 import com.alligo.model.CartItem
 import com.alligo.presentation.cart.components.CartAdapter
 import com.alligo.presentation.cart.components.CheckoutSuccessDialog
 import com.alligo.presentation.cart.components.SwipeHandler
+import com.alligo.presentation.utils.SnackbarService
 import com.alligo.presentation.utils.extentions.formatPrice
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
@@ -38,7 +43,7 @@ class CartFragment : Fragment() {
 
 
         binding.cartCheckoutBtn.setOnClickListener {
-            val checkoutSuccessDialog = CheckoutSuccessDialog{
+            val checkoutSuccessDialog = CheckoutSuccessDialog {
                 viewModel.deleteAll()
             }
             checkoutSuccessDialog.showNow(childFragmentManager, "AddToCartDialog")
@@ -61,7 +66,7 @@ class CartFragment : Fragment() {
 
 
     private fun setData(items: List<CartItem>) {
-        if(items.isNotEmpty()) {
+        if (items.isNotEmpty()) {
             cartAdapter.bindData(items)
 
             val originalPrice = viewModel.originalPrice
@@ -72,9 +77,9 @@ class CartFragment : Fragment() {
             binding.cartDiscountValue.text = discount.formatPrice()
 
             binding.cartTotalValue.text = (originalPrice - discount).formatPrice()
-        }else{
-            binding.cartBottomSheet.visibility=View.GONE
-            binding.cartEmpty.visibility=View.VISIBLE
+        } else {
+            binding.cartBottomSheet.visibility = View.GONE
+            binding.cartEmpty.visibility = View.VISIBLE
         }
     }
 
@@ -96,8 +101,23 @@ class CartFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(
             SwipeHandler.simpleItemTouchCallback(
                 context = requireContext(),
-                onDelete = {
-                    viewModel.deleteItem(it)
+                onDelete = { index ->
+                    viewModel.deleteItem(index)
+                    cartAdapter.removeItem(index)
+                    view?.let {
+                        SnackbarService.showWithAction(it, getString(R.string.item_is_deleted), onUndoClicked = {
+
+                            cartAdapter.addItem(
+                                viewModel.recentlyDeletedItemPosition!!,
+                                viewModel.recentlyDeletedItem!!
+                            )
+                            viewModel.clearDeleteData()
+
+                        }, onCompleteAction = {
+                            viewModel.confirmDeleteItem()
+
+                        })
+                    }
                 },
 
                 )
@@ -105,6 +125,8 @@ class CartFragment : Fragment() {
 
         itemTouchHelper.attachToRecyclerView(binding.cartRecyclerview)
     }
+
+
 
 
     override fun onDestroyView() {
