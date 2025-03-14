@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alligo.R
 import com.alligo.data.utils.NetworkResult
 import com.alligo.databinding.FragmentHomeBinding
 import com.alligo.model.product.Product
+import com.alligo.presentation.MainContainerFragmentDirections
 import com.alligo.presentation.addToCart.AddToCartViewModel
 import com.alligo.presentation.cart.CartViewModel
 import com.alligo.presentation.addToCart.AddToCartDialog
@@ -52,13 +55,7 @@ class HomeFragment : Fragment() {
             // once the network request has completed successfully.
             viewModel.refresh()
         }
-        //  binding.buttonHome.setOnClickListener {
-//            val navController = requireActivity().findNavController(R.id.main_activity_container)
-//
-//            val action =
-//                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment()
-//            navController.navigate(action)
-//        }
+
         return root
     }
 
@@ -66,20 +63,24 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productsState.collect { state ->
+                binding.homeRefresher.isRefreshing = false
+
                 when (state) {
                     is NetworkResult.Loading -> {
 
-                        //  binding.textHome.text = "Loading"
+                        binding.homeProgress.visibility=View.VISIBLE
+                        binding.homeRefresher.visibility=View.GONE
                     }
 
                     is NetworkResult.Success -> {
+                        binding.homeProgress.visibility=View.GONE
+                        binding.homeRefresher.visibility=View.VISIBLE
                         setData(state.data.products)
 
                     }
 
                     is NetworkResult.Failure -> {
-                        //   binding.textHome.text = state.message
-
+                        binding.homeProgress.visibility=View.GONE
                     }
                     else->{}
                 }
@@ -93,11 +94,19 @@ class HomeFragment : Fragment() {
         val recyclerView: RecyclerView = binding.homeProductsGrid
         recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 items per row
 
-        adapter = GridAdapter { product ->
+        adapter = GridAdapter (onClicked = {
+
+            val navController = requireActivity().findNavController(R.id.main_activity_container)
+
+            val action =
+                MainContainerFragmentDirections.actionMainContainerFragmentToProductDetailsFragment(it.id)
+            navController.navigate(action)
+//
+        }, onAddToCartClicked = { product ->
 
             val addToCartDialog = AddToCartDialog(product,)
             addToCartDialog.showNow(childFragmentManager, "AddToCartDialog")
-        }
+        })
 
         recyclerView.adapter = adapter
 
@@ -127,7 +136,6 @@ class HomeFragment : Fragment() {
 
     private fun setData(data: List<Product>) {
 
-        binding.homeRefresher.isRefreshing = false
         if (viewModel.page == 1)
             adapter.bindData(data)
         else

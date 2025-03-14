@@ -10,7 +10,11 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.alligo.presentation.productDetails.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/mainContainerFragment"

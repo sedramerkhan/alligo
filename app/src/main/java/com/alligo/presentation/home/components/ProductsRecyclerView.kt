@@ -20,7 +20,8 @@ import com.alligo.presentation.utils.extentions.formatToEnglish
 
 
 class GridAdapter(
-    private val onAddToCartClicked: (Product) -> Unit
+    private val onAddToCartClicked: (Product) -> Unit,
+    private val onClicked: (Product) -> Unit,
 ) :
     RecyclerView.Adapter<GridAdapter.GridViewHolder>() {
 
@@ -87,7 +88,7 @@ class GridAdapter(
 
 
             binding.root.setOnClickListener {
-
+                onClicked(item)
             }
 
             binding.productItemAddToCart.setOnClickListener {

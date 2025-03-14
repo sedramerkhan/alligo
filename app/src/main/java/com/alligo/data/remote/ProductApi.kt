@@ -1,5 +1,6 @@
 package  com.alligo.data.remote
 
+import com.alligo.data.model.product.ProductResponse
 import com.alligo.data.model.product.ProductsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,6 +23,6 @@ interface ProductApi {
 
     @GET("products/{id}")
     suspend fun getProduct(
-        @Path("id") id: String,
-    ): ProductsResponse
+        @Path("id") id: Int,
+    ): ProductResponse
 }

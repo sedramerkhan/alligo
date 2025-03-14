@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFF</color>
-    <color name="black">#C1C1C1</color>
+    <color name="black">#1C1C1C</color>
 
     <color name="grey100">#F5F5F5</color>
     <color name="grey200">#E0E0E0</color>
@@ -35,6 +35,7 @@
 
     <color name="shimmer">#D3D3D3</color>
     <color name="red">#FF3B30</color>
+    <color name="green">#3BFF30</color>
 
     <color name="ratingCardBackground">#B3FFFFFF</color>
 

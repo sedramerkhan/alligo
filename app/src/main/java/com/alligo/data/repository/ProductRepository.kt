@@ -4,6 +4,7 @@ import android.util.Log
 import com.alligo.data.model.product.asDomainModel
 import com.alligo.data.remote.ProductApi
 import com.alligo.data.utils.NetworkResult
+import com.alligo.model.product.Product
 import com.alligo.model.product.Products
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -56,7 +57,7 @@ class ProductRepository(
     }
 
     // Function to get a single product by id
-    suspend fun getProduct(id: String): Flow<NetworkResult<out Products>> = flow {
+    suspend fun getProduct(id: Int): Flow<NetworkResult<out Product>> = flow {
         emit(NetworkResult.Loading)
         val response = apiService.getProduct(id = id)
         emit(NetworkResult.Success(response.asDomainModel))
