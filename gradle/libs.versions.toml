@@ -27,6 +27,9 @@ coil="2.7.0"
 shimmer="0.5.0"
 swiperefresh="1.1.0"
 
+coreSplashscreen = "1.0.1"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -47,6 +50,8 @@ hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.re
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }

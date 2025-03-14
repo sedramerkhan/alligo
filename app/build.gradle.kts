@@ -104,4 +104,7 @@ dependencies {
     implementation(libs.swiperefreshlayout)
 
 
+    //Splash
+    implementation(libs.androidx.core.splashscreen)
+
 }
