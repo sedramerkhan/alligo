@@ -2,8 +2,10 @@ package  com.alligo.presentation.utils
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.res.Resources
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.ConfigurationCompat
 import java.util.Locale
 
 object AppSettingManager {
@@ -28,6 +30,18 @@ object AppSettingManager {
         // Update context with new configuration
         val updatedContext = context.createConfigurationContext(configuration)
         return ContextWrapper(updatedContext)
+    }
+
+     fun getSystemDefaultLocale(): String {
+        val sysLocales = ConfigurationCompat.getLocales(Resources.getSystem().configuration)
+        return sysLocales[0]?.language ?: Locale.getDefault().language ?: "en"
+    }
+
+    fun getSystemDefaultTheme(): String {
+        return if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            "dark"
+        else
+            "light"
     }
 
 }

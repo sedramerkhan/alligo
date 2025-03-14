@@ -2,7 +2,6 @@ package  com.alligo.presentation
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -75,7 +74,7 @@ class MainContainerFragment : Fragment() {
     private fun setBottomNavbar() {
         // Set up the NavController with the bottom nav navigation graph
         val navHostFragment =
-            childFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
+            childFragmentManager.findFragmentById(R.id.bottom_nav_host) as NavHostFragment
 
         navController = navHostFragment.navController
         // Set up BottomNavigationView to work with the NavController
