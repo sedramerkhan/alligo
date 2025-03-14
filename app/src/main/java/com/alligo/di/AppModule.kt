@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import com.alligo.data.local.room.Room
 import com.alligo.data.local.room.dao.CartDao
+import com.alligo.data.remote.AuthApi
 import com.alligo.data.remote.ProductApi
+import com.alligo.data.repository.AuthRepository
 import com.alligo.data.repository.CartRepository
 import com.alligo.data.repository.ProductRepository
 import com.alligo.presentation.BaseApplication
@@ -88,6 +90,22 @@ object AppModule {
         cartDao: CartDao
     ): CartRepository {
         return CartRepository(cartDao)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthApi(
+        retrofit: Retrofit
+    ): AuthApi {
+        return retrofit.create(AuthApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepo(
+        authApi: AuthApi
+    ): AuthRepository {
+        return AuthRepository(authApi)
     }
 
 }

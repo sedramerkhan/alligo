@@ -53,21 +53,21 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="32dp">
 
-                <!--   Email     -->
+                <!--   username     -->
                 <TextView
-                    android:id="@+id/login_text_email"
+                    android:id="@+id/login_text_username"
                     style="@style/TextH5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
-                    android:text="@string/email"
+                    android:text="@string/user_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/longin_edit_text_email_layout"
+                    android:id="@+id/longin_edit_text_username_layout"
                     style="@style/EditTextLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,17 +75,17 @@
                     app:startIconTint="@color/edit_text_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/login_text_email"
-                    app:startIconDrawable="@drawable/ic_email"
+                    app:layout_constraintTop_toBottomOf="@+id/login_text_username"
+                    app:startIconDrawable="@drawable/ic_user"
                     tools:ignore="Autofill,DuplicateSpeakableTextCheck">
 
                     <EditText
-                        android:id="@+id/longin_edit_text_email"
+                        android:id="@+id/longin_edit_text_username"
                         style="@style/EditText"
                         android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress|textNoSuggestions"
+                        android:hint="@string/user_name"
+                        android:inputType="text"
                         app:hintEnabled="false" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -98,15 +98,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="@string/password"
-                    app:layout_constraintStart_toStartOf="@id/login_text_email"
-                    app:layout_constraintTop_toBottomOf="@+id/longin_edit_text_email_layout" />
+                    app:layout_constraintStart_toStartOf="@id/login_text_username"
+                    app:layout_constraintTop_toBottomOf="@+id/longin_edit_text_username_layout" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_edit_text_password_layout"
                     style="@style/EditTextLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="53dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center_vertical"
                     app:endIconMode="password_toggle"

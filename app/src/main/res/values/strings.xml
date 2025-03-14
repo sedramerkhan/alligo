@@ -24,6 +24,9 @@
     <string name="forget_password">Forget Password</string>
     <string name="sign_up">Sign up</string>
     <string name="no_account">Don\'t have account?</string>
+    <string name="user_name">User Name</string>
+    <string name="invalid_data">Invalid username or password. Please try again</string>
+    <string name="logged_in_successfully">Logged in Successfully</string>
 
 
 </resources>

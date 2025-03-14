@@ -81,6 +81,7 @@ class HomeFragment : Fragment() {
                         //   binding.textHome.text = state.message
 
                     }
+                    else->{}
                 }
             }
         }
