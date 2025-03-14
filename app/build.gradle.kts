@@ -56,6 +56,11 @@ android {
         }
     }
 
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
 
 
 
@@ -97,8 +102,6 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.shimmer)
     implementation(libs.swiperefreshlayout)
-
-
 
 
 }

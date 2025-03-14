@@ -2,7 +2,6 @@ package  com.alligo.presentation.utils
 
 import android.content.Context
 import android.content.ContextWrapper
-import android.os.Build
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
@@ -16,14 +15,19 @@ object AppSettingManager {
         }
     }
 
-    fun applyLocale(context: Context,locale: Locale) : ContextWrapper {
+    fun applyLocale(context: Context, locale: Locale): ContextWrapper {
+        Locale.setDefault(locale)
         val resources = context.resources
         val configuration = resources.configuration
+
+        // Update system locale
         val localeList = LocaleList(locale)
         LocaleList.setDefault(localeList)
         configuration.setLocales(localeList)
-        val ctx = context.createConfigurationContext(configuration)
-        return ContextWrapper(ctx)
+
+        // Update context with new configuration
+        val updatedContext = context.createConfigurationContext(configuration)
+        return ContextWrapper(updatedContext)
     }
 
 }

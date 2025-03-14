@@ -24,8 +24,6 @@ class BaseApplication : Application() {
         AppSettingManager.applyTheme(isDarkMode)
 
 
-        isArabic = appPreferences.locale == "ar"
-
         Log.i("Setting", "Locale ${appPreferences.locale} theme ${appPreferences.theme}")
 
         val sysLocales = ConfigurationCompat.getLocales(Resources.getSystem().configuration)
@@ -42,7 +40,6 @@ class BaseApplication : Application() {
     companion object {
         lateinit var appPreferences: AppPreferences
         var isDarkMode = false
-        var isArabic = false
     }
 
 
