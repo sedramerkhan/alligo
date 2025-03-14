@@ -133,7 +133,7 @@
 
                 <TextView
                     android:id="@+id/login_text_view_forget_password"
-                    style="@style/TextBodySmallRegular"
+                    style="@style/TextBodySmallMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"

@@ -23,14 +23,16 @@
     <string name="email">البريد الإلكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="sign_in">تسجيل الدخول</string>
-    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="forget_password">نسيت كلمة المرور؟</string>
     <string name="sign_up">التسجيل</string>
     <string name="no_account">ليس لديك حساب؟</string>
     <string name="user_name">اسم المستخدم</string>
     <string name="invalid_data">اسم المستخدم أو كلمة المرور غير صحيحة. الرجاء المحاولة مرة أخرى.</string>
     <string name="logged_in_successfully">تمّ تسجيل الدخول بنجاح</string>
-    <string name="failed_to_get_data">Failed to get data</string>
-    <string name="check_your_connection_then_retry">Check your connection, then retry</string>
+    <string name="failed_to_get_data">فشل في جلب البيانات</string>
+    <string name="check_your_connection_then_retry">تحقق من اتصالك ثم أعد المحاولة</string>
+    <string name="search">بحث</string>
+
 
 
 </resources>

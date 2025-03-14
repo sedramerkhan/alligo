@@ -10,7 +10,7 @@ interface ProductApi {
 
     @GET("products/search")
     suspend fun searchProducts(
-        @Query("search") search: String?,
+        @Query("q") search: String?,
         @Query("limit") limit: Int,
         @Query("skip") skip: Int,
     ): ProductsResponse

@@ -2,6 +2,7 @@ package  com.alligo.presentation.home
 
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alligo.data.repository.ProductRepository
@@ -27,7 +28,7 @@ constructor(
     }
 
 
-    var searchQuery = ""
+    val searchQuery = MutableLiveData("")
     var isSearchEnabled = false
 
     var page: Int = 1
@@ -44,45 +45,33 @@ constructor(
         viewModelScope.launch {
             productRepository.getProducts(page)
                 .collect {
-                    _productsState.value = it
-                    if (it is NetworkResult.Success) {
-                        products.clear()
-                        products.addAll(it.data.products)
-
-                    }
+                    addData(it)
                 }
         }
     }
 
 
-    //     suspend fun newSearch() {
-//        cleanData()
-//        val results: MutableList<TvShow> = mutableListOf()
-//        for (p in 1..page) {
-//            repo.search(page = p, query = query).collect {
-//                tvShowsResponse = it
-//                if (it is NetworkResult.Success) {
-//                    results.addAll(it.data)
-//                }
-//                if (p == page) { // done
-//                    tvShows.addAll(results)
-//                    searchDone = true
-//                    setListState()
-//                }
-//            }
-//            Log.d("newSearch", results.size.toString())
-//        }
-//    }
-//
+    fun newSearch() {
+        if (productsState.value is NetworkResult.Loading)
+            return
+        viewModelScope.launch {
+            productRepository.searchProducts(page, searchQuery.value ?: "")
+                .collect {
+                    addData(it)
+                }
+        }
+    }
+
+    //
     fun nextPage() = viewModelScope.launch {
-        Log.i("products","next page is called $productListScrollPosition")
+        Log.i("products", "next page is called $productListScrollPosition")
 
         if (productsState.value is NetworkResult.Loading)
             return@launch
         //Divide by 2 because items are in grid
-        if ((productListScrollPosition +1) >= (page * productRepository.limit)/2) {
+        if ((productListScrollPosition + 1) >= (page * productRepository.limit) / 2) {
             page++
-            Log.i("products","next page called")
+            Log.i("products", "next page called")
 
             when (isSearchEnabled) {
                 false -> {
@@ -92,9 +81,10 @@ constructor(
                 }
 
                 else -> {
-                    productRepository.searchProducts(page = page, query = searchQuery).collect {
-                        addData(it)
-                    }
+                    productRepository.searchProducts(page = page, query = searchQuery.value ?: "")
+                        .collect {
+                            addData(it)
+                        }
                 }
             }
 
@@ -103,50 +93,46 @@ constructor(
 
 
     fun refresh() = viewModelScope.launch {
-        Log.i("products","refresh is called")
+        Log.i("products", "refresh is called $isSearchEnabled  ${searchQuery.value}")
 
-        page=1
+        page = 1
         if (productsState.value is NetworkResult.Loading)
             return@launch
 
-            when (isSearchEnabled) {
-                false -> {
-                    productRepository.getProducts(page = page).collect {
-                        addData(it)
-                    }
-                }
-
-                else -> {
-                    productRepository.searchProducts(page = page, query = searchQuery).collect {
-                        addData(it)
-                    }
+        when (isSearchEnabled) {
+            false -> {
+                productRepository.getProducts(page = page).collect {
+                    addData(it)
                 }
             }
+
+            else -> {
+                productRepository.searchProducts(page = page, query = searchQuery.value ?: "")
+                    .collect {
+                        addData(it)
+                    }
+            }
+        }
 
 
     }
 
 
     private fun addData(result: NetworkResult<out Products>) {
-        _productsState.value = result
-        if (result is NetworkResult.Success) {
-            products.clear()
-            products.addAll(result.data.products)
+        if (_productsState != null) {
+            _productsState.value = result
+            if (result is NetworkResult.Success) {
+                products.clear()
+                products.addAll(result.data.products)
+            }
         }
     }
 
-    /**
-     * Called when a new search is executed or Restoring data after closing searh bar.
-     */
-//    private fun cleanData() {
-//        tvShows.clear()
-//        onChangeTvShowScrollPosition(0)
-//    }
-//
-//    fun onQueryChanged(query: String) {
-//        setQuery(query)
-//    }
-
+    fun onClearSearch() {
+        searchQuery.value = ""
+        page = 1
+        getProducts()
+    }
 
 
 }

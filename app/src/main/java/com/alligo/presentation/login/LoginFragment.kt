@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,6 +33,11 @@ class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +58,8 @@ class LoginFragment : Fragment() {
             binding.loginCard.clearFocus()
         }
 
+
+
         return root
 
     }
@@ -70,7 +77,6 @@ class LoginFragment : Fragment() {
 
                     is NetworkResult.Success -> {
                         enableFields()
-                        val account = state.data
                         Log.i("Login", "success ${state.data}")
 
                         activity?.let { ToastUtils.show(it,

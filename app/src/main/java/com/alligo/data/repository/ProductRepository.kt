@@ -19,16 +19,25 @@ class ProductRepository(
     // Function to search for products
     suspend fun searchProducts(page: Int, query: String): Flow<NetworkResult<out Products>> = flow {
         emit(NetworkResult.Loading)
+        Log.i("products", "search $query")
         val response = apiService.searchProducts(
             search = query,
             limit = limit,
             skip = page * limit
         ) // Assuming pagination logic
+        Log.i("products", "search $response")
 
-        if (response.total != 0) {
+        //don't use total /it has wrong values
+        if (response.products.isNotEmpty()) {
             emit(NetworkResult.Success(response.asDomainModel))
         } else {
-            emit(NetworkResult.Failure("No products found"))
+            //return data without search
+            val allProductsResponse = apiService.getProducts(limit = limit, skip =  (page - 1) * limit)
+            if (allProductsResponse.total != 0) {
+                emit(NetworkResult.Success(allProductsResponse.asDomainModel))
+            } else {
+                emit(NetworkResult.Failure("No products found"))
+            }
         }
 
     }.catch { e ->
@@ -41,7 +50,7 @@ class ProductRepository(
     suspend fun getProducts(page: Int): Flow<NetworkResult<out Products>> = flow {
         emit(NetworkResult.Loading)
         val response =
-            apiService.getProducts(limit = limit, skip = page * limit) // Assuming pagination logic
+            apiService.getProducts(limit = limit, skip =  (page - 1) * limit) // Assuming pagination logic
 
         if (response.total != 0) {
             emit(NetworkResult.Success(response.asDomainModel))

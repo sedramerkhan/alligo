@@ -21,7 +21,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
-    <string name="forget_password">Forget Password</string>
+    <string name="forget_password">Forget Password?</string>
     <string name="sign_up">Sign up</string>
     <string name="no_account">Don\'t have account?</string>
     <string name="user_name">User Name</string>
@@ -29,6 +29,7 @@
     <string name="logged_in_successfully">Logged in Successfully</string>
     <string name="failed_to_get_data">Failed to get data</string>
     <string name="check_your_connection_then_retry">Check your connection, then retry</string>
+    <string name="search">Search</string>
 
 
 </resources>

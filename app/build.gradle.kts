@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
 
@@ -61,7 +62,6 @@ android {
             enableSplit = false
         }
     }
-
 
 
 }

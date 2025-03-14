@@ -1,11 +1,13 @@
 package  com.alligo.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -16,10 +18,9 @@ import com.alligo.data.utils.NetworkResult
 import com.alligo.databinding.FragmentHomeBinding
 import com.alligo.model.product.Product
 import com.alligo.presentation.MainContainerFragmentDirections
-import com.alligo.presentation.addToCart.AddToCartViewModel
-import com.alligo.presentation.cart.CartViewModel
 import com.alligo.presentation.addToCart.AddToCartDialog
 import com.alligo.presentation.home.components.GridAdapter
+import com.alligo.presentation.utils.KeyboardUtils
 import com.alligo.presentation.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,8 +30,6 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
-    private val cartViewModel: CartViewModel by activityViewModels()
-    private val addToCartViewModel: AddToCartViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -39,6 +38,12 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var adapter: GridAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +56,7 @@ class HomeFragment : Fragment() {
 
         gridInitializer()
 
+
         binding.homeRefresher.setOnRefreshListener {
             // Make sure you call swipeContainer.setRefreshing(false)
             // once the network request has completed successfully.
@@ -60,11 +66,37 @@ class HomeFragment : Fragment() {
         binding.homeError.errorViewRetry.setOnClickListener {
             viewModel.getProducts()
         }
+
+
+        ///Search
+        binding.homeSearchLayout.setEndIconOnClickListener {
+            viewModel.onClearSearch()
+        }
+
+        binding.homeSearch.setOnEditorActionListener { _, actionId, _ ->
+
+            Log.i("product", "$actionId")
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.isSearchEnabled = true
+                viewModel.refresh()
+                activity?.let { KeyboardUtils.hide(it) }
+
+                binding.homeView.clearFocus()
+                true
+            } else {
+                false
+            }
+        }
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Set up data binding
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productsState.collect { state ->
                 binding.homeRefresher.isRefreshing = false
@@ -73,15 +105,15 @@ class HomeFragment : Fragment() {
                     is NetworkResult.Loading -> {
                         binding.homeErrorView.visibility = View.GONE
 
-                        if (viewModel.products.isNotEmpty()) {
+                        if (adapter.itemCount == 0) {
                             binding.homeProgress.visibility = View.VISIBLE
-                            binding.homeRefresher.visibility = View.GONE
+                            binding.homeView.visibility = View.GONE
                         }
                     }
 
                     is NetworkResult.Success -> {
                         binding.homeProgress.visibility = View.GONE
-                        binding.homeRefresher.visibility = View.VISIBLE
+                        binding.homeView.visibility = View.VISIBLE
                         binding.homeErrorView.visibility = View.GONE
 
                         setData(state.data.products)

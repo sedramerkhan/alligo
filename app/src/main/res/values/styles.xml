@@ -124,12 +124,19 @@
         <item name="android:fontFamily">@font/ibm_medium</item>
         <item name="android:textColor">@color/edit_text_content</item>
         <item name="android:textColorHint">@color/edit_text_content</item>
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:paddingEnd">16dp</item>
         <item name="android:background">@drawable/edit_text_background</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
+
+    <style name="EditTextSearch">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/imb_regular</item>
+        <item name="android:textColor">@color/edit_text_content</item>
+        <item name="android:textColorHint">@color/edit_text_content</item>
+        <item name="android:background">@drawable/edit_text_search_background</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
 
     <style name="EditTextLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintEnabled">false</item>
