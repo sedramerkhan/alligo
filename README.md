@@ -26,7 +26,7 @@ Sync dependencies and run the app on an emulator or physical device.
 - Language: Kotlin
 - UI: XML
 - Architecture: MVVM
-- Libraries: Retrofit, Room, Hilt, Jetpack Navigation, Flow, Coroutine, Lottie, Coil ...
+- Libraries: Retrofit, Room, Hilt, Jetpack Navigation, Flow, Lottie, Coil ...
 
 
 ## **Screenshots**
