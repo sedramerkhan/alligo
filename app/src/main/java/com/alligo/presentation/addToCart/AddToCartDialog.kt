@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class AddToCartDialog(
     private val product: Product,
+    private val onClick: (() -> Unit)? = null,
 
     ) : DialogFragment() {
 
@@ -92,6 +93,7 @@ class AddToCartDialog(
 
             binding.dialogCartAddToCart.setOnClickListener {
                 addToCart()
+                onClick?.invoke()
                 dismiss()
             }
         }

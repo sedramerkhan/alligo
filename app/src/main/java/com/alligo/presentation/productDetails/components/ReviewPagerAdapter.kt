@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alligo.databinding.ItemProductReviewBinding
 import com.alligo.model.product.Review
-import com.alligo.presentation.utils.extentions.formatDate
+import com.alligo.presentation.utils.extentions.formatIso8601Date
 
 class ReviewPagerAdapter(private val reviews: List<Review>) : RecyclerView.Adapter<ReviewPagerAdapter.ReviewViewHolder>() {
 
@@ -23,7 +23,7 @@ class ReviewPagerAdapter(private val reviews: List<Review>) : RecyclerView.Adapt
         holder.binding.reviewName.text = review.reviewerName
         holder.binding.reviewRating.text =  review.rating.toString()
         holder.binding.reviewComment.text = review.comment
-        holder.binding.reviewDate.text = review.date.formatDate()
+        holder.binding.reviewDate.text = review.date.formatIso8601Date()
     }
 
     override fun getItemCount() = reviews.size

@@ -71,6 +71,9 @@ class HomeFragment : Fragment() {
         ///Search
         binding.homeSearchLayout.setEndIconOnClickListener {
             viewModel.onClearSearch()
+            activity?.let { KeyboardUtils.hide(it) }
+
+            binding.homeView.clearFocus()
         }
 
         binding.homeSearch.setOnEditorActionListener { _, actionId, _ ->

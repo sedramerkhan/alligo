@@ -20,6 +20,7 @@ import com.alligo.presentation.productDetails.components.ImagePagerAdapter
 import com.alligo.presentation.productDetails.components.ReviewPagerAdapter
 import com.alligo.presentation.productDetails.components.TagsAdapter
 import com.alligo.presentation.utils.ImageService
+import com.alligo.presentation.utils.ToastUtils
 import com.alligo.presentation.utils.extentions.formatPrice
 import com.alligo.presentation.utils.extentions.formatToEnglish
 import com.google.android.material.tabs.TabLayoutMediator
@@ -80,7 +81,10 @@ class ProductDetailsFragment : Fragment() {
                         setProductDetails(state.data)
 
                         binding.productAddToCartBtn.setOnClickListener {
-                            val addToCartDialog = AddToCartDialog(state.data)
+                            val addToCartDialog = AddToCartDialog(state.data){
+                                ToastUtils.show(requireActivity(),
+                                    getString(R.string.item_is_added_successfully))
+                            }
                             addToCartDialog.showNow(childFragmentManager, "AddToCartDialog")
                         }
                     }

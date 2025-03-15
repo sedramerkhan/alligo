@@ -55,6 +55,7 @@
             app:startIconDrawable="@drawable/ic_search"
             app:startIconTint="@color/edit_text_content"
             app:endIconDrawable="@drawable/ic_close"
+            app:endIconTint="@color/edit_text_content"
             app:endIconMode="custom"
             app:errorEnabled="false"
             android:layout_marginHorizontal="20dp"

@@ -132,7 +132,12 @@ constructor(
     fun onClearSearch() {
         searchQuery.value = ""
         page = 1
-        getProducts()
+        if(isSearchEnabled){
+            getProducts()
+        }
+        isSearchEnabled=false
+
+
     }
 
 

@@ -41,7 +41,7 @@
         <!-- Comment -->
         <TextView
             android:id="@+id/review_comment"
-            style="@style/TextBodyLargeRegular"
+            style="@style/TextBodyMediumRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
