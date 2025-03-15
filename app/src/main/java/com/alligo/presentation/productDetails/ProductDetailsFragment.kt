@@ -53,7 +53,7 @@ class ProductDetailsFragment : Fragment() {
         val root: View = binding.root
 
         binding.productError.errorViewRetry.setOnClickListener {
-            viewModel.getProduct(id)
+            viewModel.getProduct(args.id)
         }
 
 
@@ -77,6 +77,7 @@ class ProductDetailsFragment : Fragment() {
                         binding.productProgress.visibility = View.GONE
                         binding.productView.visibility = View.VISIBLE
                         binding.productBottomSheet.visibility = View.VISIBLE
+                        binding.productErrorView.visibility = View.GONE
 
                         setProductDetails(state.data)
 
