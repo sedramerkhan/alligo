@@ -23,13 +23,13 @@
 
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_theme" />
 
         <TextView
-            style="@style/TextH4"
+            style="@style/TextH5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -55,36 +55,18 @@
         app:layout_constraintTop_toBottomOf="@id/theme_switch_layout">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_language" />
 
         <TextView
-            style="@style/TextH4"
+            style="@style/TextH5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/language" />
     </LinearLayout>
 
-
-<!--    <Button-->
-<!--        android:id="@+id/lan_en"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/english"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/language_text"/>-->
-
-<!--    <Button-->
-<!--        android:id="@+id/lan_ar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/arabic"-->
-<!--        android:layout_marginStart="40dp"-->
-<!--        app:layout_constraintStart_toEndOf="@id/lan_en"-->
-<!--        app:layout_constraintTop_toTopOf="@id/lan_en"/>-->
 
     <!-- Radio Group for Language Selection -->
     <RadioGroup
@@ -100,7 +82,7 @@
         <!-- Radio Button for English -->
         <RadioButton
             android:id="@+id/radio_english"
-            style="@style/TextBodyLargeMedium"
+            style="@style/TextBodyMediumMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,7 +93,7 @@
         <!-- Radio Button for Arabic -->
         <RadioButton
             android:id="@+id/radio_arabic"
-            style="@style/TextBodyLargeMedium"
+            style="@style/TextBodyMediumMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -139,13 +121,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_logout" />
 
         <TextView
-            style="@style/TextH4"
+            style="@style/TextH5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

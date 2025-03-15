@@ -18,9 +18,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        isReady = savedInstanceState?.getBoolean("is ready", false) == true
         installSplashScreen().setKeepOnScreenCondition {
-            savedInstanceState?.putBoolean("is ready", isReady)
             Log.i("Splash", "onCreate: $isReady")
             !isReady
         }

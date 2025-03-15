@@ -13,19 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="20dp"
-        android:text="Hello"
+        android:layout_marginTop="40dp"
+        android:text="@string/hello"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/login_title2"
-        style="@style/TextH1"
+        style="@style/TextH5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
-        android:text="Login"
+        android:layout_marginTop="16dp"
+        android:text="@string/sign_in_to_get_anything_anytime_anywhere"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_title1" />

@@ -24,7 +24,7 @@
     <string name="password">كلمة المرور</string>
     <string name="sign_in">تسجيل الدخول</string>
     <string name="forget_password">نسيت كلمة المرور؟</string>
-    <string name="sign_up">التسجيل</string>
+    <string name="sign_up">تسجيل الدخول</string>
     <string name="no_account">ليس لديك حساب؟</string>
     <string name="user_name">اسم المستخدم</string>
     <string name="invalid_data">اسم المستخدم أو كلمة المرور غير صحيحة. الرجاء المحاولة مرة أخرى.</string>
@@ -32,7 +32,8 @@
     <string name="failed_to_get_data">فشل في جلب البيانات</string>
     <string name="check_your_connection_then_retry">تحقق من اتصالك ثم أعد المحاولة</string>
     <string name="search">بحث</string>
-
+    <string name="hello">مرحباً بك في Alligo</string>
+    <string name="sign_in_to_get_anything_anytime_anywhere">قم بتسجيل الدخول لتحصل على ما تريد بأي بوقت وأي مكان</string>
 
 
 </resources>

@@ -25,10 +25,10 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        KeyboardUtils.hide(this)
-        return super.onTouchEvent(event)
-    }
+//    override fun onTouchEvent(event: MotionEvent?): Boolean {
+//        KeyboardUtils.hide(this)
+//        return super.onTouchEvent(event)
+//    }
 
 
 }

@@ -30,6 +30,8 @@
     <string name="failed_to_get_data">Failed to get data</string>
     <string name="check_your_connection_then_retry">Check your connection, then retry</string>
     <string name="search">Search</string>
+    <string name="hello">Hello in Alligo</string>
+    <string name="sign_in_to_get_anything_anytime_anywhere">Sign in to get Anything, Anytime, Anywhere</string>
 
 
 </resources>
