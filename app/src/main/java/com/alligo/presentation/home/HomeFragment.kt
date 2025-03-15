@@ -129,7 +129,7 @@ class HomeFragment : Fragment() {
                     is NetworkResult.Failure -> {
                         binding.homeTopProgress.visibility=View.GONE
 
-                        if (viewModel.products.isNotEmpty()) {
+                        if (adapter.itemCount == 0) {
                             binding.homeProgress.visibility = View.GONE
                             binding.homeErrorView.visibility = View.VISIBLE
 
