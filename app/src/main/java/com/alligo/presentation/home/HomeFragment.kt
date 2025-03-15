@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
     }
 
@@ -77,6 +77,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.homeSearch.setOnEditorActionListener { _, actionId, _ ->
+
+            binding.homeTopProgress.visibility=View.VISIBLE
 
             Log.i("product", "$actionId")
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -118,13 +120,15 @@ class HomeFragment : Fragment() {
                         binding.homeProgress.visibility = View.GONE
                         binding.homeView.visibility = View.VISIBLE
                         binding.homeErrorView.visibility = View.GONE
+                        binding.homeTopProgress.visibility=View.GONE
 
                         setData(state.data.products)
-
 
                     }
 
                     is NetworkResult.Failure -> {
+                        binding.homeTopProgress.visibility=View.GONE
+
                         if (viewModel.products.isNotEmpty()) {
                             binding.homeProgress.visibility = View.GONE
                             binding.homeErrorView.visibility = View.VISIBLE
@@ -186,6 +190,8 @@ class HomeFragment : Fragment() {
                         firstVisibleItemPosition + 1 //index start from 0
                     // If the last item is visible, load more
                     if (visibleItemCount + firstVisibleItemPosition >= totalItemCount) {
+                        binding.homeTopProgress.visibility=View.VISIBLE
+
                         viewModel.nextPage()
                     }
                 }
@@ -196,8 +202,10 @@ class HomeFragment : Fragment() {
 
     private fun setData(data: List<Product>) {
 
-        if (viewModel.page == 1)
+        if (viewModel.page == 1) {
+            binding.homeProductsGrid.scrollToPosition(0)
             adapter.bindData(data)
+        }
         else
             adapter.addData(data)
 
