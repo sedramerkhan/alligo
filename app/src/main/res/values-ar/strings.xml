@@ -34,6 +34,10 @@
     <string name="search">بحث</string>
     <string name="hello">مرحباً بك في Alligo</string>
     <string name="sign_in_to_get_anything_anytime_anywhere">قم بتسجيل الدخول لتحصل على ما تريد بأي بوقت وأي مكان</string>
+    <string name="reviews">Reviews</string>
+    <string name="description">Description</string>
+    <string name="field_is_required">Password is required</string>
+    <string name="password_must_be_at_least_8_characters">Password must be at least 8 characters</string>
 
 
 </resources>

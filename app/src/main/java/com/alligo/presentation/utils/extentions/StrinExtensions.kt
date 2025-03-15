@@ -1,5 +1,9 @@
 package com.alligo.presentation.utils.extentions
 
+import com.alligo.R
+import java.text.SimpleDateFormat
+import java.util.Locale
+
 fun String.isValidEmail(): String? {
     return when {
         this.isEmpty() -> {
@@ -15,16 +19,22 @@ fun String.isValidEmail(): String? {
 }
 
 // Extension function for password validation
-fun String.isValidPassword(): String? {
+fun String.isValidPassword(): Int? {
     return when {
         this.isEmpty() -> {
             // Password field is empty
-            "Password is required"
+           R.string.field_is_required
         }
         this.length < 8 -> {
             // Password is too short
-            "Password must be at least 8 characters"
+           R.string.password_must_be_at_least_8_characters
         }
         else -> null // No error, valid password
     }
+}
+
+
+fun String.formatDate(): String {
+    val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH)
+    return formatter.format(this)
 }

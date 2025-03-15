@@ -38,6 +38,7 @@ class LoginFragment : Fragment() {
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,8 +80,12 @@ class LoginFragment : Fragment() {
                         enableFields()
                         Log.i("Login", "success ${state.data}")
 
-                        activity?.let { ToastUtils.show(it,
-                            getString(R.string.logged_in_successfully)) }
+                        activity?.let {
+                            ToastUtils.show(
+                                it,
+                                getString(R.string.logged_in_successfully)
+                            )
+                        }
 
                         findNavController().navigate(
                             R.id.action_loginFragment_to_mainContainerFragment,
@@ -94,7 +99,8 @@ class LoginFragment : Fragment() {
                         enableFields()
                         activity?.let { ToastUtils.show(it, getString(R.string.invalid_data)) }
                     }
-                    else-> {}
+
+                    else -> {}
                 }
             }
         }
@@ -103,13 +109,12 @@ class LoginFragment : Fragment() {
 
     private fun signIn() {
 
-        Log.i("login", "sign in")
 
         val username = binding.longinEditTextUsername.text.toString().trim()
         val password = binding.loginEditTextPassword.text.toString().trim()
 
         // Validate inputs
-        val usernameError = if (username.isEmpty()) "Field is required" else null
+        val usernameError = if (username.isEmpty()) getString(R.string.field_is_required) else null
         val passwordError = password.isValidPassword()
 
         // Check for validation errors
@@ -120,12 +125,11 @@ class LoginFragment : Fragment() {
         }
 
         if (passwordError != null) {
-            binding.loginEditTextPasswordLayout.error = passwordError
+            binding.loginEditTextPasswordLayout.error = getString(passwordError)
 
         } else {
             binding.loginEditTextPasswordLayout.error = null
         }
-        Log.i("login", "$usernameError $passwordError  $username  $password")
 
         if (usernameError == null && passwordError == null) {
             // Disable fields while sending API request

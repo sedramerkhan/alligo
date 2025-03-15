@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><!-- res/layout/item_review.xml -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_marginHorizontal="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:orientation="vertical">
+
+        <!-- Reviewer's Name -->
+        <TextView
+            android:id="@+id/review_name"
+            style="@style/TextBodyMediumSemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reviewer Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Rating -->
+        <TextView
+            android:id="@+id/review_rating"
+            style="@style/TextBodyMediumRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="8dp"
+            android:text="4.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/review_name" />
+
+        <!-- Comment -->
+        <TextView
+            android:id="@+id/review_comment"
+            style="@style/TextBodyLargeRegular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="This is a sample review comment."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/review_rating" />
+
+        <!-- Date of Review -->
+        <TextView
+            android:id="@+id/review_date"
+            style="@style/TextBodySmallRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Review"
+            android:textColor="@color/textPrimaryAlt"
+            app:layout_constraintBottom_toBottomOf="@id/review_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/review_rating" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

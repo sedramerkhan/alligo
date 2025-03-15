@@ -32,6 +32,10 @@
     <string name="search">Search</string>
     <string name="hello">Hello in Alligo</string>
     <string name="sign_in_to_get_anything_anytime_anywhere">Sign in to get Anything, Anytime, Anywhere</string>
+    <string name="reviews">Reviews</string>
+    <string name="description">Description</string>
+    <string name="field_is_required">Password is required</string>
+    <string name="password_must_be_at_least_8_characters">Password must be at least 8 characters</string>
 
 
 </resources>

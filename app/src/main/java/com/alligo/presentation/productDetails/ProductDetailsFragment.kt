@@ -17,6 +17,7 @@ import com.alligo.databinding.FragmentProductDetailsBinding
 import com.alligo.model.product.Product
 import com.alligo.presentation.addToCart.AddToCartDialog
 import com.alligo.presentation.productDetails.components.ImagePagerAdapter
+import com.alligo.presentation.productDetails.components.ReviewPagerAdapter
 import com.alligo.presentation.productDetails.components.TagsAdapter
 import com.alligo.presentation.utils.ImageService
 import com.alligo.presentation.utils.extentions.formatPrice
@@ -108,9 +109,7 @@ class ProductDetailsFragment : Fragment() {
 //            )
 
             val adapter = ImagePagerAdapter(product.images)
-
             binding.productViewPager.adapter = adapter
-
             // Attach TabLayout with ViewPager2
             TabLayoutMediator(binding.productTabLayout, binding.productViewPager) { _, _ -> }.attach()
 
@@ -166,7 +165,11 @@ class ProductDetailsFragment : Fragment() {
             productPolicy.text = product.returnPolicy
 
 
-        }
+            val reviewAdapter = ReviewPagerAdapter(product.reviews)
+            binding.productReviewRecyclerview.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                this.adapter = reviewAdapter
+            }        }
     }
 
     override fun onDestroyView() {
