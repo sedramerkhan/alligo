@@ -118,9 +118,10 @@ constructor(
     }
 
 
+    //todo: check why checking null is needed (happened after adding databinding)
     private fun addData(result: NetworkResult<out Products>) {
-        if (_productsState != null) {
-            _productsState.value = result
+        _productsState?.let{
+            it.value = result
             if (result is NetworkResult.Success) {
                 products.clear()
                 products.addAll(result.data.products)

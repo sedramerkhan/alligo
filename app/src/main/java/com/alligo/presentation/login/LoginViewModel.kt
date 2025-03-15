@@ -3,9 +3,9 @@ package com.alligo.presentation.login
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alligo.data.model.auth.Account
 import com.alligo.data.repository.AuthRepository
 import com.alligo.data.utils.NetworkResult
+import com.alligo.model.Account
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

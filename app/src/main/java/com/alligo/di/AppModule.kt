@@ -3,6 +3,7 @@ package com.alligo.di
 import android.app.Application
 import android.content.Context
 import com.alligo.data.local.room.Room
+import com.alligo.data.local.room.dao.AccountDao
 import com.alligo.data.local.room.dao.CartDao
 import com.alligo.data.remote.AuthApi
 import com.alligo.data.remote.ProductApi
@@ -94,6 +95,14 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideAccountDao(
+        room: Room
+    ): AccountDao {
+        return room.accountDao()
+    }
+
+    @Singleton
+    @Provides
     fun provideAuthApi(
         retrofit: Retrofit
     ): AuthApi {
@@ -103,9 +112,9 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAuthRepo(
-        authApi: AuthApi
+        authApi: AuthApi,accountDao: AccountDao
     ): AuthRepository {
-        return AuthRepository(authApi)
+        return AuthRepository(authApi,accountDao)
     }
 
 }

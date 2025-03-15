@@ -18,6 +18,7 @@ class AppPreferences(context: Context) {
         set(value) = mPrefs.edit { putString("theme_pref", value) }
 
 
+    //todo: use encrypted shared preference
     var token: String
         get() = mPrefs.getString("token_pref", "") ?: ""
         set(value) = mPrefs.edit { putString("token_pref", value) }
