@@ -1,19 +1,18 @@
-package  com.alligo.presentation.cart.components
+package com.alligo.presentation.cart.components
 
 import android.content.Context
 import android.graphics.*
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alligo.R
-
 
 object SwipeHandler {
 
     // This to delete cart item when swiping Left
     fun simpleItemTouchCallback(
         context: Context,
+        canSwipe: (Int) -> Boolean,  // Function to check if item is deletable
         onDelete: (Int) -> Unit
     ): ItemTouchHelper.SimpleCallback =
         object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -22,6 +21,18 @@ object SwipeHandler {
             private val icon = ContextCompat.getDrawable(context, R.drawable.ic_delete)
             private val iconMargin = 40
             private val backgroundColor = ContextCompat.getColor(context, R.color.backgroundColor)
+
+            override fun getSwipeDirs(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ): Int {
+                val position = viewHolder.absoluteAdapterPosition
+                return if (position != RecyclerView.NO_POSITION && canSwipe(position)) {
+                    super.getSwipeDirs(recyclerView, viewHolder) // Allow swipe
+                } else {
+                    0 // Disable swipe
+                }
+            }
 
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -33,8 +44,11 @@ object SwipeHandler {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.absoluteAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION && canSwipe(position)) {
                     onDelete(position)
+                } else {
+                    // Reset the swipe if the item cannot be deleted
+                    notifyItemChanged(viewHolder)
                 }
             }
 
@@ -47,12 +61,10 @@ object SwipeHandler {
                 actionState: Int,
                 isCurrentlyActive: Boolean
             ) {
-
                 val itemView = viewHolder.itemView
                 val itemHeight = itemView.bottom - itemView.top
 
                 if (dX < 0) {  // Only draw if swiping left
-
                     paint.color = backgroundColor
                     val background = RectF(
                         itemView.right.toFloat() + dX, itemView.top.toFloat(),
@@ -81,7 +93,12 @@ object SwipeHandler {
                     actionState,
                     isCurrentlyActive
                 )
+            }
 
+            private fun notifyItemChanged(viewHolder: RecyclerView.ViewHolder) {
+                viewHolder.itemView.post {
+                    viewHolder.bindingAdapter?.notifyItemChanged(viewHolder.absoluteAdapterPosition)
+                }
             }
         }
 }

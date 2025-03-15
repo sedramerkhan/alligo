@@ -1,8 +1,6 @@
 package  com.alligo.presentation.cart
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +17,6 @@ import com.alligo.presentation.cart.components.CheckoutSuccessDialog
 import com.alligo.presentation.cart.components.SwipeHandler
 import com.alligo.presentation.utils.SnackbarService
 import com.alligo.presentation.utils.extentions.formatPrice
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
@@ -101,6 +98,9 @@ class CartFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(
             SwipeHandler.simpleItemTouchCallback(
                 context = requireContext(),
+                canSwipe = {
+                    viewModel.isDeleteEnabled
+                },
                 onDelete = { index ->
                     viewModel.deleteItem(index)
                     cartAdapter.removeItem(index)

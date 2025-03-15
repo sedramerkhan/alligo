@@ -28,7 +28,8 @@ class CartViewModel @Inject constructor(
 
     var recentlyDeletedItem: CartItem? = null
     var recentlyDeletedItemPosition: Int? = null
-
+    var isDeleteEnabled =
+        true //this because swiping items fast (within snackbar duration cause issue)
 
     private fun getItems() {
         viewModelScope.launch {
@@ -74,18 +75,23 @@ class CartViewModel @Inject constructor(
     }
 
     fun deleteItem(index: Int) {
+        isDeleteEnabled=false
         recentlyDeletedItem = _cartItemsState.value[index]
         recentlyDeletedItemPosition = index
     }
 
     fun confirmDeleteItem() {
         viewModelScope.launch {
-            cartRepository.deleteItem(recentlyDeletedItem!!.id)
-            clearDeleteData()
+            recentlyDeletedItem?.apply {
+                cartRepository.deleteItem(id)
+                clearDeleteData()
+            }
+
         }
     }
 
     fun clearDeleteData() {
+        isDeleteEnabled=true
         recentlyDeletedItem = null
         recentlyDeletedItemPosition = null
     }
