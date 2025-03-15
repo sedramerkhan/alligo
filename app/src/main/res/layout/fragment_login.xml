@@ -15,6 +15,7 @@
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="40dp"
         android:text="@string/hello"
+        android:textColor="@color/textSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +28,7 @@
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="16dp"
         android:text="@string/sign_in_to_get_anything_anytime_anywhere"
+        android:textColor="@color/textSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_title1" />
@@ -73,11 +75,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:startIconTint="@color/edit_text_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/login_text_username"
                     app:startIconDrawable="@drawable/ic_user"
+                    app:startIconTint="@color/edit_text_content"
                     tools:ignore="Autofill,DuplicateSpeakableTextCheck">
 
                     <EditText
@@ -144,6 +146,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/login_edit_text_password_layout" />
 
 
+                <ProgressBar
+                    android:id="@+id/login_btn_progress"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:elevation="4dp"
+                    android:indeterminateTint="@color/colorOnPrimary"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/login_btn"
+                    app:layout_constraintEnd_toEndOf="@id/login_btn"
+                    app:layout_constraintStart_toStartOf="@id/login_btn"
+                    app:layout_constraintTop_toTopOf="@id/login_btn" />
                 <!--    Button        -->
                 <Button
                     android:id="@+id/login_btn"

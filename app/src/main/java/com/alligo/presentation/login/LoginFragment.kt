@@ -145,12 +145,16 @@ class LoginFragment : Fragment() {
         binding.longinEditTextUsername.isEnabled = false
         binding.loginEditTextPassword.isEnabled = false
         binding.loginBtn.isEnabled = false
+        binding.loginBtn.text = ""
+        binding.loginBtnProgress.visibility = View.VISIBLE
     }
 
     private fun enableFields() {
         binding.longinEditTextUsername.isEnabled = true
         binding.loginEditTextPassword.isEnabled = true
         binding.loginBtn.isEnabled = true
+        binding.loginBtn.text = getString(R.string.sign_in)
+        binding.loginBtnProgress.visibility = View.GONE
     }
 
     override fun onDestroyView() {

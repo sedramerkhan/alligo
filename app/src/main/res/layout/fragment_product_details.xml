@@ -91,7 +91,6 @@
                 android:orientation="vertical">
 
 
-
                 <!-- Product Title -->
                 <TextView
                     android:id="@+id/product_title"
@@ -135,7 +134,7 @@
                     style="@style/TextBodyMediumMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
+                    android:layout_marginTop="8dp"
                     android:text="category"
                     android:textColor="@color/colorSecondaryVariant" />
                 <!-- Price and Discount -->
@@ -182,7 +181,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="8dp"
-                            android:paddingVertical="1dp"
+                            android:layout_marginVertical="1dp"
                             android:text="30%"
                             android:textColor="@color/white" />
 
@@ -203,8 +202,6 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_star"
                         android:drawablePadding="8dp"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="2dp"
                         android:text="3.5"
                         android:textColor="@color/textPrimary" />
 
@@ -238,14 +235,6 @@
 
                     tools:text="This is a sample product description." />
 
-                <!-- Shipping Information -->
-                <!--        <TextView-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"-->
-                <!--            android:paddingTop="8dp"-->
-                <!--            android:text="Shipping Information"-->
-                <!--            android:textSize="16sp"-->
-                <!--            android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/product_shipping_info"
@@ -281,8 +270,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:textColor="@color/textSecondary"
-                    android:text="@string/reviews"/>
+                    android:text="@string/reviews"
+                    android:textColor="@color/textSecondary" />
 
             </LinearLayout>
 
@@ -292,8 +281,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                />
+                android:orientation="horizontal" />
         </LinearLayout>
     </ScrollView>
 
