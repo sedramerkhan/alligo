@@ -10,14 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alligo.R
 import com.alligo.data.utils.NetworkResult
 import com.alligo.databinding.FragmentProductDetailsBinding
 import com.alligo.model.product.Product
 import com.alligo.presentation.addToCart.AddToCartDialog
+import com.alligo.presentation.productDetails.components.ImagePagerAdapter
+import com.alligo.presentation.productDetails.components.TagsAdapter
 import com.alligo.presentation.utils.ImageService
 import com.alligo.presentation.utils.extentions.formatPrice
 import com.alligo.presentation.utils.extentions.formatToEnglish
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -97,11 +101,19 @@ class ProductDetailsFragment : Fragment() {
         // Fetch product details from API / ViewModel
 
         binding.apply {
-            ImageService.setImage(
-                productThumbnail.image,
-                productThumbnail.imageShimmer,
-                product.thumbnail
-            )
+//            ImageService.setImage(
+//                productThumbnail.image,
+//                productThumbnail.imageShimmer,
+//                product.thumbnail
+//            )
+
+            val adapter = ImagePagerAdapter(product.images)
+
+            binding.productViewPager.adapter = adapter
+
+            // Attach TabLayout with ViewPager2
+            TabLayoutMediator(binding.productTabLayout, binding.productViewPager) { _, _ -> }.attach()
+
 
             if (product.brand.isNullOrEmpty()) {
                 productBrand.visibility = View.GONE
@@ -141,12 +153,18 @@ class ProductDetailsFragment : Fragment() {
                 )
             )
 
+
+            val tagsAdapter = TagsAdapter(product.tags)
+            binding.productTageRecyclerview.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                this.adapter = tagsAdapter
+            }
+
             productDescription.text = product.description
             productShippingInfo.text = product.shippingInformation
             productWarranty.text = product.warrantyInformation
             productPolicy.text = product.returnPolicy
 
-            productTags.text = product.tags.joinToString(", ")
 
         }
     }

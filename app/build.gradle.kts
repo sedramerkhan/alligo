@@ -106,5 +106,6 @@ dependencies {
 
     //Splash
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.viewpager)
 
 }

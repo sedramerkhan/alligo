@@ -32,7 +32,7 @@ object SwipeHandler {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
+                val position = viewHolder.absoluteAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onDelete(position)
                 }

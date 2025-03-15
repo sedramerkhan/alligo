@@ -13,21 +13,23 @@ lifecycleViewmodelKtx = "2.8.7"
 navigationFragmentKtx = "2.8.8"
 navigationUiKtx = "2.8.8"
 
-hilt="2.51"
+hilt = "2.51"
 
-room ="2.6.1"
+room = "2.6.1"
 ksp = "1.9.0-1.0.13"
 
 retrofit = "2.9.0"
 
-lottie= "6.6.3"
+lottie = "6.6.3"
 playServicesAnalyticsImpl = "18.2.0"
 
-coil="2.7.0"
-shimmer="0.5.0"
-swiperefresh="1.1.0"
+coil = "2.7.0"
+shimmer = "0.5.0"
+swiperefresh = "1.1.0"
 
 coreSplashscreen = "1.0.1"
+
+viewpager = "1.1.0"
 
 
 [libraries]
@@ -57,12 +59,14 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 
-lottie= { module = "com.airbnb.android:lottie", version.ref = "lottie"}
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 play-services-analytics-impl = { group = "com.google.android.gms", name = "play-services-analytics-impl", version.ref = "playServicesAnalyticsImpl" }
 
-coil = {module = "io.coil-kt:coil" ,version.ref="coil" }
-shimmer = {module = "com.facebook.shimmer:shimmer" ,version.ref="shimmer" }
-swiperefreshlayout = {module = "androidx.swiperefreshlayout:swiperefreshlayout" ,version.ref="swiperefresh" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
+swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefresh" }
+
+androidx-viewpager = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -73,3 +77,4 @@ navigation-safe-args = { id = "androidx.navigation.safeargs", version.ref = "nav
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+

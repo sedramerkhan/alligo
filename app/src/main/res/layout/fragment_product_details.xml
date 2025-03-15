@@ -50,14 +50,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
 
-                <include
-                    android:id="@+id/product_thumbnail"
-                    layout="@layout/custom_image_view" />
-            </FrameLayout>
+            <!-- ViewPager2 for Image Slider -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/product_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp" />
+
+            <!-- TabLayout for Dots Indicator -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/product_tabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@color/grey200"
+                app:tabGravity="center"
+                app:tabIndicatorColor="@color/colorSecondaryVariant"
+                app:tabIndicatorHeight="3dp"
+                app:tabMode="fixed" />
+
+
+            <!--            <FrameLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="250dp">-->
+
+            <!--                <include-->
+            <!--                    android:id="@+id/product_thumbnail"-->
+            <!--                    layout="@layout/custom_image_view" />-->
+            <!--            </FrameLayout>-->
 
 
             <LinearLayout
@@ -68,16 +91,6 @@
                 android:orientation="vertical">
 
 
-                <!-- Product Title -->
-                <TextView
-                    android:id="@+id/product_brand"
-                    style="@style/TextH5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:text="Brand"
-                    android:textColor="@color/colorPrimaryVariant" />
-
 
                 <!-- Product Title -->
                 <TextView
@@ -85,11 +98,38 @@
                     style="@style/TextH2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:textColor="@color/textSecondary"
                     tools:text="Sample Product Title" />
 
-                <!-- Product Title -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <!-- Product Brand -->
+                    <TextView
+                        android:id="@+id/product_brand"
+                        style="@style/TextH5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:text="Brand"
+                        android:textColor="@color/colorPrimaryVariant" />
+
+                    <!--         Tags        -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/product_tage_recyclerview"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toTopOf="@id/cart_bottom_sheet"
+                        app:layout_constraintTop_toBottomOf="@id/cart_appbar" />
+
+                </LinearLayout>
+
+                <!-- Product Category -->
                 <TextView
                     android:id="@+id/product_category"
                     style="@style/TextBodyMediumMedium"
@@ -209,7 +249,7 @@
 
                 <TextView
                     android:id="@+id/product_shipping_info"
-                    style="@style/TextBodyMediumRegular"
+                    style="@style/TextBodyMediumMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -217,17 +257,9 @@
                     tools:text="Ships within 2-3 days" />
 
                 <!-- Warranty Information -->
-                <!--        <TextView-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"-->
-                <!--            android:paddingTop="8dp"-->
-                <!--            android:text="Warranty Information"-->
-                <!--            android:textSize="16sp"-->
-                <!--            android:textStyle="bold" />-->
-
                 <TextView
                     android:id="@+id/product_warranty"
-                    style="@style/TextBodyMediumRegular"
+                    style="@style/TextBodyMediumMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -236,21 +268,13 @@
 
                 <TextView
                     android:id="@+id/product_policy"
-                    style="@style/TextBodyMediumRegular"
+                    style="@style/TextBodyMediumMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:textColor="@color/textPrimary"
                     tools:text="return policy" />
 
-                <TextView
-                    android:id="@+id/product_tags"
-                    style="@style/TextBodyMediumRegular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textColor="@color/textPrimary"
-                    tools:text="return policy" />
 
             </LinearLayout>
         </LinearLayout>
