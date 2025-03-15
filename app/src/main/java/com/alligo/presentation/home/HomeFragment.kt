@@ -132,6 +132,7 @@ class HomeFragment : Fragment() {
                         if (adapter.itemCount == 0) {
                             binding.homeProgress.visibility = View.GONE
                             binding.homeErrorView.visibility = View.VISIBLE
+                            binding.homeView.visibility = View.GONE
 
                         } else {
                             activity?.let {
