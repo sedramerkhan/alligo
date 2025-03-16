@@ -11,6 +11,7 @@ import com.alligo.data.repository.AuthRepository
 import com.alligo.data.repository.CartRepository
 import com.alligo.data.repository.ProductRepository
 import com.alligo.presentation.BaseApplication
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,7 +51,7 @@ object AppModule {
             .client(
                 interceptorClient.build()
             )
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
     }
 

@@ -18,11 +18,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = android.signingConfigs.named("debug").get()
+
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -54,12 +59,6 @@ android {
                 "META-INF/AL2.0",
                 "META-INF/LGPL2.1"
             )
-        }
-    }
-
-    bundle {
-        language {
-            enableSplit = false
         }
     }
 
