@@ -1,4 +1,9 @@
-# **Alligo - E-Commerce App**  
+# **Alligo - E-Commerce App** 
+
+<img width="500"  alt="image" src="https://github.com/user-attachments/assets/54a1cbac-a4c5-4982-bdb1-97b76fe82b86" />
+
+
+<br><br>
 
 Alligo is a user-friendly e-commerce app featuring:  
 - Secure **login**  
